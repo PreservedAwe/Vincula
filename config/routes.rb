@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  
+  root 'home#index'
+  get '/register' , to: 'register#index'
+  get '/about', to: 'about#index' 
+  get '/contact_us', to: 'contact_us#index' 
+  get '/safety_tips', to: 'safety_tips#index' 
+  get '/log_in', to: 'log_in#index' 
   get '/menu', to: 'menu#index'
   get '/support', to: 'support#index'
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
