@@ -32,7 +32,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
+      t.string :username
+      t.text :bio
+      t.string :location
+      t.binary :audio, limit: 25.megabytes
+      t.binary :picture, limit: 500.megabytes
+      
       t.timestamps null: false
     end
 

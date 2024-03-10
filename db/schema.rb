@@ -20,6 +20,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_123531) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "username"
+    t.text "bio"
+    t.string "location"
+    t.binary "audio", limit: 26214400
+    t.binary "picture", limit: 524288000
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
