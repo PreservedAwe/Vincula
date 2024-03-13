@@ -6,13 +6,16 @@ export default class extends Controller {
   static targets = ["input", "dropdown"]
 
   connect(){
+   console.log('Connected')
    this.loadArtists()
   }
 
   loadArtists() {
     // Fetch artists from Spotify API and update the dropdown
+    console.log('loading artists')
     const query = this.inputTarget.value
     if (query && query.length > 2) {
+       console.log('fetching resources')
        fetch(`http://localhost:3000/search_artist?query=${query}`)
          .then(response => response.json())
          .then(artists => this.updateDropdown(artists))

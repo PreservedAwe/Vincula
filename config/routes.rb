@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   root 'home#index'
-  get '/search_artist/:query' , to: 'profile#search_artist'
+  get '/search_artist' , to: 'profile#search_artist'
   get '/settings' , to: 'settings#index'
   get '/edit_profile' , to: 'profile#edit'
   get '/profile' , to: 'profile#index'
@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get '/about', to: 'about#index' 
   get '/contact_us', to: 'contact_us#index' 
   get '/safety_tips', to: 'safety_tips#index' 
-  get '/log_in', to: 'log_in#index'
   get '/log_out', to: 'log_out#index'
+  get '/log_in', to: 'log_in#index'
   post '/log_in', to: 'log_in#is_user' 
   get '/menu', to: 'menu#index'
   get '/support', to: 'support#index'

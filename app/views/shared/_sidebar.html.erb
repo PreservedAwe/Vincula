@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" data-controller="log-out">
   <ul class="nav flex-column">
     <li class="nav-item">
       <a class="nav-link" href="/menu">Menu</a>
@@ -19,7 +19,9 @@
       <a class="nav-link" href="/profile">Profile</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/log_out">Log Out</a>
+      <div data-turbo="false" >
+      <a class="nav-link" href="/log_out" data-log-out-target="link">Log Out</a>
+      </div>
     </li>
   </ul>
 </div>

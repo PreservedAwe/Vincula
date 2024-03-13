@@ -32,6 +32,9 @@ gem "jbuilder"
 # Spotify api for calls to their database
 gem "rspotify"
 
+# Dealing with CORS for api's
+gem 'rack-cors'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
