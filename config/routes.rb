@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   root 'home#index'
+  get '/search_artist/:query' , to: 'profile#search_artist'
   get '/settings' , to: 'settings#index'
+  get '/edit_profile' , to: 'profile#edit'
   get '/profile' , to: 'profile#index'
   get '/register' , to: 'register#index'
   get '/about', to: 'about#index' 

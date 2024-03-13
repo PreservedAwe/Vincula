@@ -29,8 +29,21 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Spotify api for calls to their database
+gem "rspotify"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
+
+# Gem for renameing controllers and or models
+gem 'rails_refactor'
+
+# Gem for keeping special key's private
+gem 'dotenv', groups: [:development, :test]
+
+# gem for precompiling stuff(i just needed it to get stuff to work)
+gem "ffi"
+
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
