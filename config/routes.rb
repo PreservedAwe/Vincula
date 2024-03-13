@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
   root 'home#index'
+  get '/find' , to: 'find#index'
+  post '/find' , to: 'find#search'
   get '/search_artist' , to: 'profile#search_artist'
   get '/settings' , to: 'settings#index'
   get '/edit_profile' , to: 'profile#edit'

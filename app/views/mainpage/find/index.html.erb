@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col">
+    <%= render "shared/sidebar" %>
+  </div>
+  <div class="col">
+    <%= form_with url: "/find", method: :post do |form| %>
+      <div>
+        <%= form.label :username %><br>
+        <%= form.text_field :username %>
+      </div>
+
+      <div>
+        <%= form.submit "Find Person" %>
+      </div>
+      
+    <% end %>
+  </div>
+</div>
+
+
