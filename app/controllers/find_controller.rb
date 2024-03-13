@@ -6,7 +6,7 @@ class FindController < ApplicationController
         else  
           redirect_to "/log_in"
         end  
-      end
+    end
 
       def search
         user = User.find_by(username: params[:username])

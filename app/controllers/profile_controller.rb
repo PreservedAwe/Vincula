@@ -11,6 +11,7 @@ class ProfileController < ApplicationController
   def edit
     if session[:user_id]
       @current_user = User.find(session[:user_id])
+      @location = Geocoder.search("Paris")
       render "mainpage/profile/edit"
     else  
       redirect_to "/log_in"
@@ -21,4 +22,5 @@ class ProfileController < ApplicationController
     artists = RSpotify::Artist.search(params[:query])
     render json: artists
   end
+
 end

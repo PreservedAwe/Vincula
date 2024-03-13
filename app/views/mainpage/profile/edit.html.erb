@@ -3,4 +3,15 @@
     <select data-artist-search-target="dropdown">
         <!-- Options will be populated by Stimulus -->
     </select>
+        <%= form_with url: "/get_location", method: :post do |form| %>
+      <div>
+        <%= form.hidden_field :latitude %><br>
+        <%= form.hidden_field :longitude %>
+      </div>
+
+      <div>
+        <%= form.submit "Get Location" %>
+      </div>
+      <%= @location.first.coordinates  %>
+    <% end %>
 </div>

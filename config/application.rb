@@ -19,13 +19,19 @@ module Vincula
     # Configuration for the application, engines, and railties goes here.
     RSpotify::authenticate(ENV['SPOTIFY_ID'], ENV['SPOTIFY_SECRET'])
 
-    # config/application.rb
+    # Middle for cross origin request, in my case for spotify
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'http://127.0.0.1:3000' # or specify the application's origin
         resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head]
       end
     end
+
+    Geocoder.configure(
+    # Geocoding options
+    :lookup => :geoapify,
+    :api_key => ENV['GEOAPIFY_KEY']
+    )
 
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.

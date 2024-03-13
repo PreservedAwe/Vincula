@@ -35,6 +35,9 @@ gem "rspotify"
 # Dealing with CORS for api's
 gem 'rack-cors'
 
+# Gem for dealing with location and coordinates
+gem 'geocoder'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
