@@ -8,5 +8,24 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create!(email: "test@exam.com", password: "password", username: "testy1").create_setting(gender: "Yesssirrr")
-User.create!(email: "test2@exam.com", password: "password", username: "testy2").create_setting()       
+# Real User data sample
+# Seed users
+users = User.create!([
+ { email: 'user1@example.com', password: 'password1', username: 'taestyy11' },
+ { email: 'user2@example.com', password: 'password2', username: 'taestyyyweeqeqe' }
+])
+
+# Seed messages
+messages = Message.create!([
+ { body: 'Hello, world!', user: users.first, conversation: conversation},
+ { body: 'How are you?', user: users.last, conversation: conversation}
+])
+
+# Seed conversations
+conversation = Conversation.create!()
+
+# Seed settings
+settings = Setting.create!([
+ { user: users.first, gender: 'male' },
+ { user: users.last, theme: 'female' }
+])      

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+
   
   root 'home#index'
+  get '/messages' , to: 'messages#index'
   get '/connect' , to: 'connect#index'
   get '/find' , to: 'find#index'
   post '/find' , to: 'find#search'
