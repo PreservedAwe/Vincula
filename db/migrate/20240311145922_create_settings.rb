@@ -2,11 +2,8 @@ class CreateSettings < ActiveRecord::Migration[7.1]
   def change
     create_table :settings do |t|
 
-      t.string :gender
-
-
-
-
+      t.integer :max_distance
+      t.integer :min_distance
       t.references :user
       t.timestamps
     end
