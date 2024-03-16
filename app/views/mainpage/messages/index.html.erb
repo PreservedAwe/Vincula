@@ -4,7 +4,11 @@
   </div>
   <div class="col">
     <h1>Messages#index</h1>
-    <p>All Messages:  </p>
+    <p>All Convos:  </p>
+    <% @conversations.each do |c| %>
+    
+    <p>Find me in app/views/connect/index.html.erb <%= c.id %> </p>
+    <% end %>
   </div>
 </div>
 

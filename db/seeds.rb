@@ -9,32 +9,27 @@
 #   end
 
 # Real User data sample
+
 # Seed users
-users = User.create!([
- { email: 'user1@example.com', password: 'password1', username: 'taestyy11' },
- { email: 'user2@example.com', password: 'password2', username: 'taestyyyweeqeqe' }
-])
+user1 = User.create!(email: 'user1@ex.com', password: 'password1', username: 'taestyy11')
+user2 = User.create!(email: 'user2@ex.com', password: 'password2', username: 'taestyy40222')
 
 # Seed settings
-settings = Setting.create!([
- { user: users.first, gender: 'male' },
- { user: users.last, gender: 'female' }
-])      
+user1Settings = user1.create_setting(min_distance: 4, max_distance: 36, user: user1)   
+user2Settings = user2.create_setting(min_distance: 9, max_distance: 15, user: user2)  
 
 # Seed conversations
-conversation = Conversation.create!()
-
+conversation = Conversation.create!(sender: user1.id, receipient: user2.id)
 
 # Seed messages
-messages = Message.create!([
- { body: 'Hello, world!', user: users.first, conversation: conversation},
- { body: 'How are you?', user: users.last, conversation: conversation}
-])
+message1 = Message.create!(body: "Hi how are you", sender: user1.id, conversation: conversation)
+message2 = Message.create!(body: "Hi how are you", sender: user2.id, conversation: conversation)
 
 
-# Path to the video file
-video_path = Rails.root.join('db/videos/example_video.mp4')
+
+# Path to the video file guide help
+#video_path = Rails.root.join('db/videos/example_video.mp4')
 
 # Attach the video to the post
-post.videos.attach(io: File.open(video_path), filename: 'example_video.mp4', content_type: 'video/mp4')
+#post.videos.attach(io: File.open(video_path), filename: 'example_video.mp4', content_type: 'video/mp4')
 
