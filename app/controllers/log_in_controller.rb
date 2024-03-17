@@ -8,8 +8,8 @@ class LogInController < ApplicationController
   end  
 
   def is_user
-    user = User.find_by(email: params[:email], password: params[:password])
-    if user
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to "/menu"  
     else  
