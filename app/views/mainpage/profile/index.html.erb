@@ -1,11 +1,10 @@
-<%= render "shared/sidebar" %>
-<div class="row">
-<%= render "shared/profileview" %>    
-</div>
-<div class="row">
-<a class="btn btn-outline-primary" href="/edit_profile" role="button">Edit Profile</a>
-<a class="btn btn-outline-danger" href="/delete_profile" role="button">Delete Profile</a>     
-</div>
-
+<main class=" d-flex flex-nowrap vh-100">
+  <%= render "shared/sidebar" %>
+  <div class="border border-dashed text-center">
+    <%= render "shared/profileview" %> 
+    <a class="btn btn-outline-primary" href="/edit_profile" role="button">Edit Profile</a>
+    <a class="btn btn-outline-danger" href="/delete_profile" role="button">Delete Profile</a>     
+  </div>
+</main>
 
 

@@ -13,7 +13,7 @@ class RegisterController < ApplicationController
 
     if !userByUsername && !userByEmail && params[:password] == params[:confirmPassword]
       user = User.create!(email: params[:email], password: params[:password], username: params[:username])
-      userSettings = user.create_setting()
+      userSettings = user.create_setting(user: user)
       session[:user_id] = user.id
       redirect_to "/menu" 
     else  

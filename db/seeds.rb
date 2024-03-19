@@ -11,12 +11,13 @@
 # Real User data sample
 
 # Seed users
-user1 = User.create!(email: 'user1@ex.com', password: 'password1', username: 'taestyy11')
+user1 = User.create!(email: 'user1@ex.com', password: 'password1', username: 'taestyy11', latitude: 48.856614, longitude: 2.3522219)
 user2 = User.create!(email: 'user2@ex.com', password: 'password2', username: 'taestyy40222')
+user1.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
 
 # Seed settings
-user1Settings = user1.create_setting(min_distance: 4, max_distance: 36)   
-user2Settings = user2.create_setting(min_distance: 9, max_distance: 15)  
+user1Settings = user1.create_setting(min_distance: 4, max_distance: 36, user: user1)   
+user2Settings = user2.create_setting(min_distance: 9, max_distance: 15, user: user2)  
 
 # Seed conversations
 conversation = Conversation.create!(sender: user1.id, receipient: user2.id)
