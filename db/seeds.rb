@@ -15,8 +15,8 @@ user1 = User.create!(email: 'user1@ex.com', password: 'password1', username: 'ta
 user2 = User.create!(email: 'user2@ex.com', password: 'password2', username: 'taestyy40222')
 
 # Seed settings
-user1Settings = user1.create_setting(min_distance: 4, max_distance: 36, user: user1)   
-user2Settings = user2.create_setting(min_distance: 9, max_distance: 15, user: user2)  
+user1Settings = user1.create_setting(min_distance: 4, max_distance: 36)   
+user2Settings = user2.create_setting(min_distance: 9, max_distance: 15)  
 
 # Seed conversations
 conversation = Conversation.create!(sender: user1.id, receipient: user2.id)

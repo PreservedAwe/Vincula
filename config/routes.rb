@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
-  
+  #Root route
   root 'home#index'
+
+  #Post routes
+  post '/find' , to: 'find#search'
+  post '/register' , to: 'register#is_valid'
+  post '/log_in', to: 'log_in#is_user' 
+  
+  #Get routes
   get '/messages' , to: 'messages#index'
   get '/connect' , to: 'connect#index'
   get '/find' , to: 'find#index'
-  post '/find' , to: 'find#search'
   get '/search_artist' , to: 'profile#search_artist'
   get '/settings' , to: 'settings#index'
   get '/edit_profile' , to: 'profile#edit'
@@ -16,9 +22,11 @@ Rails.application.routes.draw do
   get '/safety_tips', to: 'safety_tips#index' 
   get '/log_out', to: 'log_out#index'
   get '/log_in', to: 'log_in#index'
-  post '/log_in', to: 'log_in#is_user' 
   get '/menu', to: 'menu#index'
   get '/support', to: 'support#index'
+
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

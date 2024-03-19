@@ -2,26 +2,29 @@
     <div class="row align-items-center g-lg-5 py-5">
       <div class="col-lg-7 text-center text-lg-start">
         <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Register</h1>
-        <p class="col-lg-10 fs-4">Sign up.</p>
+        <p class="col-lg-10 fs-4">Sign up for a free account today.</p>
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
-        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/register" method="post">
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="michael_reeves21" required>
+            <label for="username">Username</label>
+          </div>          
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+            <label for="email">Email address</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            <label for="password">Password</label>
           </div>
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+            <label for="password">Confirm Password</label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Create Account</button>
           <hr class="my-4">
-          <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+          <small class="text-body-secondary">By clicking Sign up, you agree to.......nothing, enjoy the app :)</small>
         </form>
       </div>
     </div>
