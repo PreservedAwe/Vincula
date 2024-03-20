@@ -1,5 +1,5 @@
-<div class="card text-center vw-100">
-  <img src="<%= @current_user.profile_picture %>" class="card-img-top" alt="...">
+<div class="card text-center border-0 h-80 w-100">
+  <img src="<%= rails_blob_path(@current_user.profile_picture) %>" class="card-img-top h-10 w-60" alt="Profile Picture(Browser doesn't support picture)">
   <div class="card-body">
     <h5 class="card-title"><%= @current_user.username %></h5>
     <% userLocation = Geocoder.search([@current_user.latitude, @current_user.longitude]) %>
