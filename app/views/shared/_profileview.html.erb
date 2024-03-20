@@ -4,6 +4,18 @@
     <h5 class="card-title"><%= @current_user.username %></h5>
     <% userLocation = Geocoder.search([@current_user.latitude, @current_user.longitude]) %>
     <p class="card-text">Location:<%= userLocation.first.city %>, <%= userLocation.first.country %></p>
+    <% genres = ChosenGenre.find_by(user_id: @current_user.id) %>
+    <% artists = ChosenArtist.find_by(user_id: @current_user.id) %>
+    <% tags = ChosenTag.find_by(user_id: @current_user.id) %>
+    <ol class="list-group list-group-numbered">
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold"><%= %></div>
+          Content for list item
+        </div>
+        <span class="badge text-bg-primary rounded-pill">14</span>
+      </li>
+    </ol>   
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>

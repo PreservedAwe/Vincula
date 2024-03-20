@@ -19,13 +19,9 @@ user1.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'ima
 user1Settings = user1.create_setting(min_distance: 4, max_distance: 36, user: user1)   
 user2Settings = user2.create_setting(min_distance: 9, max_distance: 15, user: user2)  
 
-# Seed conversations
-conversation = Conversation.create!(sender: user1.id, receipient: user2.id)
 
-# Seed messages
-message1 = Message.create!(body: "Hi how are you", sender: user1.id, conversation: conversation)
-message2 = Message.create!(body: "Hi how are you", sender: user2.id, conversation: conversation)
-
+# Seed genres
+user1genre1 = ChosenGenre.create!(genre_id: RSpotify::Category.find('metal').id, user_id: user1.id)
 
 
 # Path to the video file guide help

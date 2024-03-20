@@ -40,43 +40,44 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_000306) do
   end
 
   create_table "chosen_artists", force: :cascade do |t|
-    t.integer "user_id_id"
+    t.integer "user_id"
+    t.integer "setting_id"
     t.string "artist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id_id"], name: "index_chosen_artists_on_user_id_id"
   end
 
   create_table "chosen_genres", force: :cascade do |t|
-    t.integer "user_id_id"
+    t.integer "user_id"
+    t.integer "setting_id"
     t.string "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id_id"], name: "index_chosen_genres_on_user_id_id"
   end
 
   create_table "chosen_tags", force: :cascade do |t|
-    t.integer "user_id_id"
+    t.integer "user_id"
+    t.integer "setting_id"
     t.string "tag_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id_id"], name: "index_chosen_tags_on_user_id_id"
   end
 
   create_table "conversations", force: :cascade do |t|
-    t.integer "sender"
-    t.integer "receipient"
+    t.integer "sender_id"
+    t.integer "receipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.integer "sender"
+    t.integer "user_id"
     t.integer "conversation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "settings", force: :cascade do |t|
