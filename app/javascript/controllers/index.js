@@ -7,6 +7,5 @@ import { application } from "./application"
 import ArtistSearchController from "./artist_search_controller"
 application.register("artist-search", ArtistSearchController)
 
-
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

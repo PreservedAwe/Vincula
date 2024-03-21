@@ -1,10 +1,8 @@
 class MessagesController < ApplicationController
+  before_action :valid_user
+
   def index
-    if session[:user_id]
-      @conversations = Conversation.where(sender: session[:user_id]) + Conversation.where(receipient: session[:user_id])
-      render "mainpage/messages/index"
-    else  
-      redirect_to "/log_in"
-    end  
+    @conversations = Conversation.where(sender: session[:user_id]) + Conversation.where(receipient: session[:user_id])
+    render "mainpage/messages/index"
   end
 end

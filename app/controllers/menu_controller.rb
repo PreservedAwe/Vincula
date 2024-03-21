@@ -1,9 +1,7 @@
 class MenuController < ApplicationController
+  before_action :valid_user
+
   def index
-    if session[:user_id]
-      render "mainpage/menu/index"
-    else  
-      redirect_to "/log_in"
-    end  
+    render "mainpage/menu/index"
   end
 end

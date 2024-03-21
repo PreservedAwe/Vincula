@@ -16,7 +16,6 @@
           <% userLocation = Geocoder.search(@current_user.ip_address).first %>
           <input type="text" class="form-control" id="location" readonly value="<%= userLocation.city %>, <%= userLocation.country %>" required>
           <label for="location">Location</label>
-          <input type="hidden" name="ip_address" value="<%= @current_user.ip_address %>">
           <a href="/get_location" class="btn btn-primary">Update Location</a>
         </div>
         <div class="form-floating mb-3">

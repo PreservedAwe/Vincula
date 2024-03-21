@@ -1,21 +1,15 @@
 class ProfileController < ApplicationController
+  before_action :valid_user
+
   def index
-    if session[:user_id]
-      @current_user = User.find(session[:user_id])
-      render "mainpage/profile/index"
-    else  
-      redirect_to "/log_in"
-    end  
+    @current_user = User.find(session[:user_id])
+    render "mainpage/profile/index"
   end
 
   def edit
-    if session[:user_id]
-      @current_user = User.find(session[:user_id])
-      @location = Geocoder.search("Paris")
-      render "mainpage/profile/edit"
-    else  
-      redirect_to "/log_in"
-    end  
+    @current_user = User.find(session[:user_id])
+    @location = Geocoder.search("Paris")
+    render "mainpage/profile/edit"
   end
 
   def search_artist
@@ -24,15 +18,20 @@ class ProfileController < ApplicationController
   end
 
   def get_location
-    location = request.remote_ip
+    ip = request.remote_ip
+    temp_user = User.find(session[:user_id]) 
+    temp_user.ip_address = ip
+    temp_user.save
+    redirect_to "/edit_profile"
   end
 
   def update
-    @temp_user = User.find(session[:user_id]) 
-    if @temp_user.save
-      redirect_to "/edit", notice: "Account Update Successful"
+    temp_user = User.find(session[:user_id]) 
+    temp_user.username = params[:username]
+    if temp_user.save
+      redirect_to "/edit_profile", notice: "Account Update Successful"
     else
-      redirect_to "/edit", notice: "Account Update Unsuccessful"
+      redirect_to "/edit_profile", notice: "Account Update Unsuccessful"
     end
   end
 
