@@ -27,11 +27,6 @@ module Vincula
       end
     end
 
-    Geocoder.configure(
-    # Geocoding options
-    :lookup => :geoapify,
-    :api_key => ENV['GEOAPIFY_KEY']
-    )
 
     config.action_cable.mount_path = '/websocket'
     

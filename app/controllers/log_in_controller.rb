@@ -13,12 +13,16 @@ class LogInController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      session[:login_email] = nil
       redirect_to "/menu"  
     else
+      session[:login_email] = params[:email]
       if user
-        redirect_to "/log_in", alert: "The password isn't correct, try again"   
+        flash[:notice] = "The password isn't correct, try again"
+        redirect_to "/log_in"  
       else 
-        redirect_to "/log_in", notice: "User isn't in our database"
+        flash[:error] = "User isn't in our database"
+        redirect_to "/log_in"
       end
     end  
   end  

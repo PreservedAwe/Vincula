@@ -2,8 +2,8 @@
   <img src="<%= rails_blob_path(@current_user.profile_picture) %>" class="card-img-top h-10 w-60" alt="Profile Picture(Browser doesn't support picture)">
   <div class="card-body">
     <h5 class="card-title"><%= @current_user.username %></h5>
-    <% userLocation = Geocoder.search([@current_user.latitude, @current_user.longitude]) %>
-    <p class="card-text">Location:<%= userLocation.first.city %>, <%= userLocation.first.country %></p>
+    <% userLocation = Geocoder.search(@current_user.ip_address).first %>
+    <p class="card-text">Location:<%= userLocation.city %>, <%= userLocation.country %></p>
     <% genres = ChosenGenre.find_by(user_id: @current_user.id) %>
     <% artists = ChosenArtist.find_by(user_id: @current_user.id) %>
     <% tags = ChosenTag.find_by(user_id: @current_user.id) %>

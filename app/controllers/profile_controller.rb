@@ -23,4 +23,17 @@ class ProfileController < ApplicationController
     render json: artists
   end
 
+  def get_location
+    location = request.remote_ip
+  end
+
+  def update
+    @temp_user = User.find(session[:user_id]) 
+    if @temp_user.save
+      redirect_to "/edit", notice: "Account Update Successful"
+    else
+      redirect_to "/edit", notice: "Account Update Unsuccessful"
+    end
+  end
+
 end

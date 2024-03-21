@@ -93,8 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_000306) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.float "latitude"
-    t.float "longitude"
+    t.string "ip_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

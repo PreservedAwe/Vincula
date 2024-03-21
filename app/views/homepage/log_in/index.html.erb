@@ -6,8 +6,9 @@
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
         <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/log_in" method="post">
+          <%= render "shared/flash_messages" %>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%= @email %>" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%= session[:login_email] %>" required>
             <label for="email">Email address</label>
           </div>
           <div class="form-floating mb-3">

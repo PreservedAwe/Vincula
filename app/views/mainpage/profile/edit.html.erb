@@ -1,22 +1,55 @@
 <main class=" d-flex flex-nowrap vh-100 vw-100">
   <%= render "shared/sidebar" %>
   <div class="border border-dashed text-center overflow-scroll h-100 w-100">
+    <div class="col-md-10 mx-auto col-lg-5">
+      <%= render "shared/flash_messages" %>
+      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/edit_profile" method="post" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="username" name="username" placeholder="michael_reeves21" value="<%= @current_user.username %>" required>
+          <label for="username">Username</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%= @current_user.email %>" required>
+          <label for="email">Email address</label>
+        </div>
+        <div class="form-floating mb-3">
+          <% userLocation = Geocoder.search(@current_user.ip_address).first %>
+          <input type="text" class="form-control" id="location" readonly value="<%= userLocation.city %>, <%= userLocation.country %>" required>
+          <label for="location">Location</label>
+          <input type="hidden" name="ip_address" value="<%= @current_user.ip_address %>">
+          <a href="/get_location" class="btn btn-primary">Update Location</a>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept="image/*" >
+          <label for="profile_picture">Profile Picture</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="file" class="form-control" id="profile_video" name="profile_video" accept="video/*" >
+          <label for="profile_video">Profile Video</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="file" class="form-control" id="songs" name="songs" multiple accept=".mp3" onchange="validateFiles(this)" >
+          <label for="songs">Songs</label>
+          <script>
+            function validateFiles(input) {
+              const maxFiles = 3
+              var fileCount = input.files ? input.files.length : 0
+              if (fileCount > maxFiles) {
+                alert('You can only select up to three MP3 files.')
+                input.value = '' // Clear selected files
+              }
+            }
+          </script>          
+        </div>        
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Update</button>
+        <hr class="my-4">
+      </form>
+    </div>    
     <div data-controller="artist-search">
         <input data-artist-search-target="input" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">
         <select data-artist-search-target="dropdown">
             <!-- Options will be populated by Stimulus -->
         </select>
-            <%= form_with url: "/get_location", method: :post do |form| %>
-          <div>
-            <%= form.hidden_field :latitude %><br>
-            <%= form.hidden_field :longitude %>
-          </div>
-
-          <div>
-            <%= form.submit "Get Location" %>
-          </div>
-          <%= @location.first.coordinates  %>
-        <% end %>
     </div>   
   </div>
 </main>

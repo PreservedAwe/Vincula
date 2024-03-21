@@ -9,12 +9,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "custom_style", "data-turbo-track": "reload" %>
     <%= action_cable_meta_tag %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-
   </head>
-
   <body class ="pageBodyy vh-100">
-    <%= render "shared/flash_messages" %>
     <%= yield %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </body>
 </html>

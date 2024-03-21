@@ -1,9 +1,6 @@
 <!-- app/views/shared/_flash_messages.html.erb -->
-<% flash.each do |type, message| %>
- <div class="alert alert-<%= type.to_s == 'notice' ? 'success' : 'danger' %> alert-dismissible fade show" role="alert">
-    <%= message %>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
- </div>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <%= value %>
+  </div>
 <% end %>

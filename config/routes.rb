@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   post '/find' , to: 'find#search'
   post '/register' , to: 'register#is_valid'
   post '/log_in', to: 'log_in#is_user' 
-  
+  post '/edit_profile' , to: 'profile#update'
+
   #Get routes
   get '/messages' , to: 'messages#index'
   get '/connect' , to: 'connect#index'
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   get '/log_in', to: 'log_in#index'
   get '/menu', to: 'menu#index'
   get '/support', to: 'support#index'
+  get '/get_location', to: 'profile#get_location'
 
 
 

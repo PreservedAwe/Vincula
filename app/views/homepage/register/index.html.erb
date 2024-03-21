@@ -6,12 +6,13 @@
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
         <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/register" method="post">
+          <%= render "shared/flash_messages" %>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="username" name="username" placeholder="michael_reeves21" required>
+            <input type="text" class="form-control" id="username" name="username" placeholder="michael_reeves21" value="<%= session[:r_username] %>" required>
             <label for="username">Username</label>
           </div>          
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%= session[:r_email] %>" required>
             <label for="email">Email address</label>
           </div>
           <div class="form-floating mb-3">
