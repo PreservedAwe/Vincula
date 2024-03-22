@@ -1,5 +1,6 @@
 class ProfileController < ApplicationController
   before_action :valid_user
+  skip_before_action :valid_user, only: [:search_artist]
 
   def index
     @current_user = User.find(session[:user_id])
