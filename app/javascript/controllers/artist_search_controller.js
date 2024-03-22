@@ -16,7 +16,7 @@ export default class extends Controller {
     const query = this.inputTarget.value
     if (query && query.length > 2) {
        console.log('fetching resources')
-       fetch("http://localhost:3000/search_artist?query=${query}")
+       fetch('http://localhost:3000/search_artist?query=' + encodeURIComponent(query))
          .then(response => response.json())
          .then(artists => this.updateDropdown(artists))
     }
