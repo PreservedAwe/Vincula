@@ -20,9 +20,60 @@ user1Settings = user1.create_setting(min_distance: 4, max_distance: 36, user: us
 user2Settings = user2.create_setting(min_distance: 9, max_distance: 15, user: user2)  
 
 
-# Seed genres
+# Seed chosen_genres
 user1genre1 = ChosenGenre.create!(genre_id: RSpotify::Category.find('metal').id, user_id: user1.id)
 
+# Seed all genres
+genres = [
+ { name: 'Heavy Metal' },
+ { name: 'Rock' },
+ { name: 'Pop' },
+ { name: 'Jazz' },
+ { name: 'Classical' },
+ { name: 'Electronic' },
+ { name: 'Hip Hop' },
+ { name: 'Folk' },
+ { name: 'Country' },
+ { name: 'Blues' },
+ { name: 'Punk' },
+ { name: 'Reggae' },
+ { name: 'Soul' },
+ { name: 'Funk' },
+ { name: 'R&B' },
+ { name: 'Hip-Hop' },
+ { name: 'Techno' },
+ { name: 'Trance' },
+ { name: 'Dubstep' },
+ { name: 'Glitch' }
+]
+
+Genre.create!(genres)
+
+# Seed all tags
+tags = [
+ { name: 'Guitarist' },
+ { name: 'Pianist' },
+ { name: 'Producer' },
+ { name: 'Drummer' },
+ { name: 'Vocalist' },
+ { name: 'Songwriter' },
+ { name: 'Mixing Engineer' },
+ { name: 'Mastering Engineer' },
+ { name: 'Sound Designer' },
+ { name: 'Music Director' },
+ { name: 'Bassist' },
+ { name: 'Keyboardist' },
+ { name: 'DJ' },
+ { name: 'Violinist' },
+ { name: 'Cellist' },
+ { name: 'Saxophonist' },
+ { name: 'Trumpeter' },
+ { name: 'Trombonist' },
+ { name: 'Percussionist' },
+ { name: 'Conductor' }
+]
+
+Tag.create!(tags)
 
 # Path to the video file guide help
 #video_path = Rails.root.join('db/videos/example_video.mp4')

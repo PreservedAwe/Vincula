@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get '/connect' , to: 'connect#index'
   get '/find' , to: 'find#index'
   get '/search_artist' , to: 'profile#search_artist'
+  get '/search_genre' , to: 'profile#search_genre'
+  get '/search_tag' , to: 'profile#search_tag'
   get '/settings' , to: 'settings#index'
   get '/edit_profile' , to: 'profile#edit'
   get '/profile' , to: 'profile#index'

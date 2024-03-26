@@ -27,7 +27,7 @@
           <label for="profile_video">Profile Video</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="file" class="form-control" id="songs" name="songs[]" multiple accept=".mp3" onchange="validateFiles(this)" >
+          <input type="file" class="form-control" id="songs" name="profile_songs[]" multiple accept=".mp3" onchange="validateFiles(this)" >
           <label for="songs">Songs</label>
           <script>
             function validateFiles(input) {
@@ -39,36 +39,57 @@
               }
             }
           </script>          
-        </div>   
-        <div class="form-floating mb-3">
-          <select id="multipleOptions" multiple>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-            <!-- Add more options as needed -->
-          </select>
-        </div>        
+        </div>         
         <div class="form-floating mb-3" data-controller="artist-search">
-            <input data-artist-search-target="input" id="artist-1" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">  
+            <input data-artist-search-target="input" id="artist_1" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">  
             <label for="artist-1">Artist 1</label>    
-            <select data-artist-search-target="dropdown">
+            <select data-artist-search-target="dropdown" name="artist-1">
                 <!-- Options will be populated by Stimulus -->
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="artist-search">
-            <input data-artist-search-target="input" id="artist-2" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">
+            <input data-artist-search-target="input" id="artist_2" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">
             <label for="artist-2">Artist 2</label>
-            <select data-artist-search-target="dropdown">
+            <select data-artist-search-target="dropdown" name="artist-2">
                 <!-- Options will be populated by Stimulus -->
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="artist-search">
             <input data-artist-search-target="input" id="artist-3" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">
             <label for="artist-3">Artist 3</label>
-            <select data-artist-search-target="dropdown">
+            <select data-artist-search-target="dropdown" name="artist_3">
                 <!-- Options will be populated by Stimulus -->
             </select>
-        </div>                     
+        </div>
+        <div class="form-floating mb-3" data-controller="genre-search">
+            <input data-genre-search-target="input" id="genre-1" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
+            <label for="genre-1">Genre 1</label>    
+            <select data-genre-search-target="dropdown" name="genre_1">
+                <!-- Options will be populated by Stimulus -->
+            </select>
+        </div> 
+        <div class="form-floating mb-3" data-controller="genre-search">
+            <input data-genre-search-target="input" id="genre_2" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
+            <label for="genre-2">Genre 2</label>    
+            <select data-genre-search-target="dropdown" name="genre-2">
+                <!-- Options will be populated by Stimulus -->
+            </select>
+        </div> 
+        <div class="form-floating mb-3" data-controller="genre-search">
+            <input data-genre-search-target="input" id="genre_3" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
+            <label for="genre-3">Genre 3</label>    
+            <select data-genre-search-target="dropdown" name="genre-3">
+                <!-- Options will be populated by Stimulus -->
+            </select>
+        </div> 
+        <div class="form-floating mb-3" data-controller="tag-search">
+            <input data-tag-search-target="input" id="tag-1" class="form-control" data-action="tag-search#loadTags" type="text" placeholder="Search for tags...">  
+            <label for="tag-1">Tag 1</label>    
+            <select data-tag-search-target="dropdown" name="tag_1">
+                <!-- Options will be populated by Stimulus -->
+            </select>
+        </div>                
+                             
         <button class="w-100 btn btn-lg btn-primary" type="submit">Update</button>
         <hr class="my-4">
       </form>
