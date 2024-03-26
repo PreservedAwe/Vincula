@@ -3,7 +3,7 @@
   <div class="border border-dashed text-center overflow-scroll h-100 w-100">
     <div class="col-md-10 mx-auto col-lg-5">
       <%= render "shared/flash_messages" %>
-      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/edit_profile" method="post" enctype="multipart/form-data">
+      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/edit_profile" method="post" enctype="multipart/form-data" >
         <div class="form-floating mb-3">
           <input type="text" class="form-control" id="username" name="username" placeholder="michael_reeves21" value="<%= @current_user.username %>" required>
           <label for="username">Username</label>
@@ -16,7 +16,7 @@
           <% userLocation = Geocoder.search(@current_user.ip_address).first %>
           <input type="text" class="form-control" id="location" readonly value="<%= userLocation.city %>, <%= userLocation.country %>" required>
           <label for="location">Location</label>
-          <a href="/get_location" class="btn btn-primary">Update Location</a>
+          <a href="/get_location" data-turbo="false" class="btn btn-primary">Update Location</a>
         </div>
         <div class="form-floating mb-3">
           <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept="image/*" >
@@ -28,7 +28,7 @@
         </div>
         <div class="form-floating mb-3">
           <input type="file" class="form-control" id="songs" name="profile_songs[]" multiple accept=".mp3" onchange="validateFiles(this)" >
-          <label for="songs">Songs</label>
+          <label for="songs">Songs(3 max)</label>
           <script>
             function validateFiles(input) {
               const maxFiles = 3
@@ -64,8 +64,9 @@
         <div class="form-floating mb-3" data-controller="genre-search">
             <input data-genre-search-target="input" id="genre-1" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
             <label for="genre-1">Genre 1</label>    
-            <select data-genre-search-target="dropdown" name="genre_1">
+            <select data-genre-search-target="dropdown" name="genre_1" >
                 <!-- Options will be populated by Stimulus -->
+                <option value="option2" selected>Option 2</option>
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="genre-search">

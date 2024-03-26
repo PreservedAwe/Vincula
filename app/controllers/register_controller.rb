@@ -11,9 +11,8 @@ class RegisterController < ApplicationController
     userByEmail = User.find_by(email: params[:email])
     userByUsername = User.find_by(username: params[:username])
 
-    if !userByUsername && !userByEmail && params[:password] == params[:confirmPassword]
-      user = User.create!(email: params[:email], password: params[:password], username: params[:username])
-      userSettings = user.create_setting(user: user)
+    if !User.exists?(email: params[:email]) && !User.exists?(username: params[:username]) && params[:password] == params[:confirmPassword]
+      create_user
       session[:user_id] = user.id
       session[:r_email] = nil
       session[:r_username] = nil
@@ -30,4 +29,13 @@ class RegisterController < ApplicationController
       end
     end
   end  
+
+  def create_user
+    user = User.create!(email: params[:email], password: params[:password], username: params[:username])
+    user.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
+    user.ip_address = request.remote_ip
+    user.save
+    userSettings = user.create_setting(user: user)  
+    userSettings.save  
+  end
 end

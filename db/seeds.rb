@@ -20,9 +20,6 @@ user1Settings = user1.create_setting(min_distance: 4, max_distance: 36, user: us
 user2Settings = user2.create_setting(min_distance: 9, max_distance: 15, user: user2)  
 
 
-# Seed chosen_genres
-user1genre1 = ChosenGenre.create!(genre_id: RSpotify::Category.find('metal').id, user_id: user1.id)
-
 # Seed all genres
 genres = [
  { name: 'Heavy Metal' },

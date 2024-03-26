@@ -1,9 +1,48 @@
-<div class="row">
-  <div class="col">
-    <%= render "shared/sidebar" %>
+<main class=" d-flex flex-nowrap vh-100 vw-100">
+  <%= render "shared/sidebar" %>
+  <div class="border border-dashed text-center overflow-scroll h-100 w-100">
+    <div class="col-md-10 mx-auto col-lg-5">
+      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/edit_profile" method="post" enctype="multipart/form-data" >
+        
+        <div class="form-floating mb-3" data-controller="artist-search">
+            <input data-artist-search-target="input" id="artist_1" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">  
+            <label for="artist-1">Artist</label>    
+            <select data-artist-search-target="dropdown" name="artist-1">
+                <!-- Options will be populated by Stimulus -->
+            </select>
+        </div> 
+        <div class="form-floating mb-3" data-controller="genre-search">
+            <input data-genre-search-target="input" id="genre-1" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
+            <label for="genre-1">Genre</label>    
+            <select data-genre-search-target="dropdown" name="genre_1" >
+                <!-- Options will be populated by Stimulus -->
+                <option value="option2" selected>Option 2</option>
+            </select>
+        </div> 
+        <div class="form-floating mb-3" data-controller="tag-search">
+            <input data-tag-search-target="input" id="tag-1" class="form-control" data-action="tag-search#loadTags" type="text" placeholder="Search for tags...">  
+            <label for="tag-1">Tag</label>    
+            <select data-tag-search-target="dropdown" name="tag_1">
+                <!-- Options will be populated by Stimulus -->
+            </select>
+        </div>
+        <div class="form-floating mb-3" > 
+          <select class="form-control" id ="type" class="form-floating mb-3" name="type">
+              <option value="option2" selected>Genre</option>
+              <option value="option2" >Tag</option>
+              <option value="option2" >Artist</option>
+          </select>
+          <label for="type">Search Type</label> 
+        </div>                           
+        <div data-controller="slider" class="form-floating mb-3">
+          <input class="form-control" type="range" id="distance" name="distance" min="1" max="100" value="50" data-target="slider.input" data-action="slider#updateValue">
+          <label for="distance">Max Distance (in kilometers): <span data-target="slider.value"></span></label>
+        </div>                           
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Apply Changes</button>
+        <hr class="my-4">
+      </form>
+    </div>
   </div>
-  <div class="col">
-    <h1>Settings#<%= @current_user.setting.max_distance %></h1>
-    <p>Find me in app/views/settings/index.html.erb</p>
-  </div>
-</div>
+</main>
+
+

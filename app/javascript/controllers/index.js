@@ -10,5 +10,8 @@ application.register("artist-search", ArtistSearchController)
 import GenreSearchController from "./genre_search_controller"
 application.register("genre-search", GenreSearchController)
 
+import SliderController from "./slider_controller"
+application.register("slider", SliderController)
+
 import TagSearchController from "./tag_search_controller"
 application.register("tag-search", TagSearchController)

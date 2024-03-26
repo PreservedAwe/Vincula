@@ -5,6 +5,7 @@ class CreateChosenArtists < ActiveRecord::Migration[7.1]
       t.integer :user_id
       t.integer :setting_id
       t.string :artist_id
+      t.integer :order
       t.timestamps
     end
   end

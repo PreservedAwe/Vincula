@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_174120) do
     t.integer "user_id"
     t.integer "setting_id"
     t.string "artist_id"
+    t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,6 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_174120) do
     t.integer "user_id"
     t.integer "setting_id"
     t.string "genre_id"
+    t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,7 +60,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_25_174120) do
   create_table "chosen_tags", force: :cascade do |t|
     t.integer "user_id"
     t.integer "setting_id"
-    t.string "tag_name"
+    t.string "tag_id"
+    t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -3,7 +3,6 @@ class CreateSettings < ActiveRecord::Migration[7.1]
     create_table :settings do |t|
 
       t.integer :max_distance
-      t.integer :min_distance
       t.references :user
       t.timestamps
     end
