@@ -13,6 +13,7 @@ class LogInController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      cookies.encrypted[:user_id] = session[:user_id] 
       session[:login_email] = nil
       redirect_to "/menu"  
     else
