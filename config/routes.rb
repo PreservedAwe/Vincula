@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   post '/register' , to: 'register#is_valid'
   post '/log_in', to: 'log_in#is_user' 
   post '/edit_profile' , to: 'profile#update'
+  post '/edit_settings' , to: 'settings#edit'
 
   #Get routes
   get '/messages' , to: 'messages#index'
   get '/connect' , to: 'connect#index'
   get '/find' , to: 'find#index'
+  get '/view_searched' , to: 'find#view_profile'
   get '/search_artist' , to: 'profile#search_artist'
   get '/search_genre' , to: 'profile#search_genre'
   get '/search_tag' , to: 'profile#search_tag'

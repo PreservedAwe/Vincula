@@ -5,4 +5,8 @@ class SettingsController < ApplicationController
     @current_user = User.find(session[:user_id])
     render "mainpage/settings/index"
   end
+
+  def edit
+  end
+  
 end

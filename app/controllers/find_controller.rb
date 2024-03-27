@@ -2,20 +2,24 @@ class FindController < ApplicationController
     before_action :valid_user
 
     def index
-      @current_user = User.find(session[:user_id])
       render "mainpage/find/index"
     end
 
-    def search
-      user = User.find_by(username: params[:username])
-      if user
-        @searched_member = user
-        flash[:notice] = "User found."
-        redirect_to "/find"
+    def view_profile
+      if session[:searched]
+        @current_user = User.find(session[:searched])
+        render "mainpage/find/view_profile"
       else
-        @searched_member = nil
-        flash[:alert] = "User not found."
         redirect_to "/find"
+      end
+    end
+
+    def search
+      if User.exists?(username: params[:username])
+        session[:searched] = User.find_by(username: params[:username]).id
+        redirect_to "/view_searched"
+      else
+        redirect_to "/find", notice: "There is no user with that username" 
       end
     end
 end
