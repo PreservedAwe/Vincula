@@ -35,7 +35,7 @@
           <label for="type">Search Type</label> 
         </div>                           
         <div data-controller="slider" class="form-floating mb-3">
-          <input class="form-control" type="range" id="distance" name="distance" min="1" max="100" value="50" data-target="slider.input" data-action="slider#updateValue">
+          <input class="form-control" type="range" id="distance" name="distance" min="1" max="100" value="<%= @current_user.setting.max_distance %>" data-target="slider.input" data-action="slider#updateValue">
           <label for="distance">Max Distance (in kilometers): <span data-target="slider.value"></span></label>
         </div>                           
         <button class="w-100 btn btn-lg btn-primary" type="submit">Apply Changes</button>
