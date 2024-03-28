@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/log_in', to: 'log_in#is_user' 
   post '/edit_profile' , to: 'profile#update'
   post '/edit_settings' , to: 'settings#edit'
+  post '/send_message' , to: 'messages#send_message'
 
   #Get routes
   get '/messages' , to: 'messages#index'

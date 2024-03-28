@@ -1,16 +1,21 @@
 <main class=" d-flex flex-nowrap vh-100">
   <%= render "shared/sidebar" %>
-  <div class="position-relative text-center text-muted bg-body border border-dashed ">
+  <div class="position-relative text-center text-muted bg-body border border-dashed overflow-scroll">
     <div class="list-group vw-100">
       <% @rooms.each do |room| %>
-        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-          <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+        <% if room.recipient_id == session[:user_id] %> 
+          <% user = User.find(room.sender_id) %>   
+        <% else %> 
+          <% user = User.find(room.recipient_id) %>
+        <% end %>     
+        <a href="/direct_messages?user=<%= user.username %>" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+          <img src="<%= rails_blob_path(user.profile_picture) %>" alt="profile pic" width="32" height="32" class="rounded-circle flex-shrink-0">
           <div class="d-flex gap-2 w-100 justify-content-between">
             <div>
-              <h6 class="mb-0"><%= room.id %></h6>
-              <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
+              <h6 class="mb-0"><%= user.username %></h6>
+              <p class="mb-0 opacity-75"><%= room.messages.last.body %></p>
             </div>
-            <small class="opacity-50 text-nowrap">now</small>
+            <small class="opacity-50 text-nowrap"></small>
           </div>
         </a>
       <% end %>

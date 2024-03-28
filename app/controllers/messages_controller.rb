@@ -18,4 +18,10 @@ class MessagesController < ApplicationController
     @room.save  
     render "mainpage/messages/direct_message"
   end
+
+  def send_message
+    message = Message.create!(body: params[:message], user: User.find(session[:user_id]), room: Room.find(params[:room]))
+    message.save
+  end
+
 end
