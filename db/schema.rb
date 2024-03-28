@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_28_095954) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_28_152228) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -66,75 +66,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_095954) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "conversations", force: :cascade do |t|
-    t.integer "sender_id"
-    t.integer "receipient_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
-    t.string "unsubscriber_type"
-    t.integer "unsubscriber_id"
-    t.integer "conversation_id"
-  end
-
-  create_table "mailboxer_conversations", force: :cascade do |t|
-    t.string "subject", default: ""
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-  end
-
-  create_table "mailboxer_notifications", force: :cascade do |t|
-    t.string "type"
-    t.text "body"
-    t.string "subject", default: ""
-    t.string "sender_type"
-    t.integer "sender_id"
-    t.integer "conversation_id"
-    t.boolean "draft", default: false
-    t.string "notification_code"
-    t.string "notified_object_type"
-    t.integer "notified_object_id"
-    t.string "attachment"
-    t.datetime "updated_at", precision: nil, null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.boolean "global", default: false
-    t.datetime "expires", precision: nil
-    t.index ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id"
-    t.index ["notified_object_type", "notified_object_id"], name: "mailboxer_notifications_notified_object"
-  end
-
-  create_table "mailboxer_receipts", force: :cascade do |t|
-    t.string "receiver_type"
-    t.integer "receiver_id"
-    t.integer "notification_id", null: false
-    t.boolean "is_read", default: false
-    t.boolean "trashed", default: false
-    t.boolean "deleted", default: false
-    t.string "mailbox_type", limit: 25
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
-  end
-
   create_table "messages", force: :cascade do |t|
-    t.text "body"
-    t.integer "user_id"
-    t.integer "conversation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -142,6 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_095954) do
   create_table "settings", force: :cascade do |t|
     t.integer "max_distance"
     t.integer "user_id"
+    t.boolean "is_enabled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_settings_on_user_id"
@@ -164,7 +110,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_095954) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id"
-  add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id"
-  add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id"
 end

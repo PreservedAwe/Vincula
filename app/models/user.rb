@@ -4,4 +4,6 @@ class User < ApplicationRecord
     has_one_attached :profile_video
     has_many_attached :profile_songs
     has_one :setting, dependent: :destroy
+    has_many :rooms
+    has_many :messages
 end

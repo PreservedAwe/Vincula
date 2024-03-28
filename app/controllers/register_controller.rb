@@ -13,7 +13,6 @@ class RegisterController < ApplicationController
 
     if !User.exists?(email: params[:email]) && !User.exists?(username: params[:username]) && params[:password] == params[:confirmPassword]
       create_user
-      session[:user_id] = user.id
       session[:r_email] = nil
       session[:r_username] = nil
       redirect_to "/menu" 
@@ -37,5 +36,6 @@ class RegisterController < ApplicationController
     user.save
     userSettings = user.create_setting(user: user)  
     userSettings.save  
+    session[:user_id] = user.id
   end
 end
