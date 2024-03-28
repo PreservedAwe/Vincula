@@ -2,7 +2,8 @@
   <%= render "shared/sidebar" %>
   <div class="border border-dashed text-center overflow-scroll h-100 w-100">
     <%= render "shared/profileview" %> 
-    <a class="btn btn-outline-primary" href="#" role="button">Send Message</a>
+    <%= User.all %>
+    <a class="btn btn-outline-primary" href="/direct_messages?user=<%= @current_user.username %>" role="button">Send Message</a>
     <a class="btn btn-outline-primary" href="/find" role="button">Go Back</a>    
   </div>
 </main>

@@ -1,0 +1,25 @@
+<main class="d-flex flex-nowrap vh-100">
+  <%= render "shared/sidebar" %>
+  <div class="flex-column border border-dashed text-center h-100 w-100">
+    <h1 class="mt-5 mb-3">Direct Messages</h1>
+    <!-- Chat container -->
+    <div class="chat-container border rounded p-3">
+      <!-- Chat messages -->
+      <div class="chat-message">
+        <strong>User 1:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </div>
+      <div class="chat-message">
+        <strong>User 2:</strong> Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </div>
+      <!-- Add more chat messages as needed -->
+    </div>
+    <!-- Message input form -->
+    <form class="mt-3">
+      <div class="mb-3">
+        <label for="messageInput" class="form-label">Message</label>
+        <textarea class="form-control" id="messageInput" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+</main>

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   #Get routes
   get '/messages' , to: 'messages#index'
+  get '/direct_messages' , to: 'messages#direct'
   get '/connect' , to: 'connect#index'
   get '/find' , to: 'find#index'
   get '/view_searched' , to: 'find#view_profile'

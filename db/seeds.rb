@@ -12,12 +12,13 @@
 
 # Seed users
 user1 = User.create!(email: 'user1@ex.com', password: 'password1', username: 'taestyy11', ip_address: "173.242.180.229")
-user2 = User.create!(email: 'user2@ex.com', password: 'password2', username: 'taestyy40222')
+user2 = User.create!(email: 'user2@ex.com', password: 'password2', username: 'taestyy40222', ip_address: "173.242.180.229")
 user1.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
+user2.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
 
 # Seed settings
-user1Settings = user1.create_setting(min_distance: 4, max_distance: 36, user: user1)   
-user2Settings = user2.create_setting(min_distance: 9, max_distance: 15, user: user2)  
+user1Settings = user1.create_setting(max_distance: 36, user: user1)   
+user2Settings = user2.create_setting(max_distance: 15, user: user2)  
 
 
 # Seed all genres

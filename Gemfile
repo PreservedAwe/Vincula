@@ -44,6 +44,8 @@ gem 'geocoder'
 # Gem for renameing controllers and or models
 gem 'rails_refactor'
 
+
+
 # Gem for keeping special key's private
 gem 'dotenv', groups: [:development, :test]
 
@@ -88,4 +90,3 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "devise", "~> 4.9"
