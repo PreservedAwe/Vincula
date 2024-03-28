@@ -12,7 +12,7 @@
 
 # Seed users
 user1 = User.create!(email: 'user1@ex.com', password: 'password1', username: 'taestyy11', ip_address: "173.242.180.229")
-user2 = User.create!(email: 'user2@ex.com', password: 'password2', username: 'taestyy40222', ip_address: "173.242.180.229")
+user2 = User.create!(email: 'user2@ex.com', password: 'password2', username: 'taestyy40222', ip_address: "192.206.151.131")
 user1.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
 user2.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
 

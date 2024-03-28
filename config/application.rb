@@ -27,6 +27,10 @@ module Vincula
       end
     end
 
+    Geocoder.configure(
+      # set default units to kilometers:
+      units: :km
+     )    
 
     config.action_cable.mount_path = '/websocket'
     
