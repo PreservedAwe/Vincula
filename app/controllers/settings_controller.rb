@@ -14,6 +14,7 @@ class SettingsController < ApplicationController
     user_settings.artist_id = params[:artist_1]
     user_settings.tag_id = params[:tag_1]
     user_settings.search_type = params[:search_type]
+    user_settings.is_enabled = params[:is_enabled]
     if user_settings.save
       redirect_to "/settings", notice: "Settings Update Successful"
     else

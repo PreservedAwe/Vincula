@@ -40,7 +40,20 @@
         <div data-controller="slider" class="form-floating mb-3">
           <input class="form-control" type="range" id="distance" name="distance" min="1" max="100" value="<%= @current_user.setting.max_distance %>" data-target="slider.input" data-action="slider#updateValue">
           <label for="distance">Max Distance (in kilometers): <span data-target="slider.value"></span></label>
-        </div>                           
+        </div>    
+        <div>
+          <% if @current_user.setting.is_enabled == true %>
+            <input type="radio" id="enabled" name="is_enabled" value="true" checked>
+            <label for="enabled">Enabled</label><br>
+            <input type="radio" id="disabled" name="is_enabled" value="false">
+            <label for="disabled">Disabled</label><br>            
+          <% else %>
+            <input type="radio" id="enabled" name="is_enabled" value="true">
+            <label for="enabled">Enabled</label><br>
+            <input type="radio" id="disabled" name="is_enabled" value="false" checked>
+            <label for="disabled">Disabled</label><br>            
+          <% end %>
+        </div>            
         <button class="w-100 btn btn-lg btn-primary" type="submit">Apply Changes</button>
         <hr class="my-4">
       </form>
