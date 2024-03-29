@@ -33,9 +33,25 @@ class RegisterController < ApplicationController
     user = User.create!(email: params[:email], password: params[:password], username: params[:username])
     user.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
     user.ip_address = request.remote_ip
-    user.save
     userSettings = user.create_setting(user: user)  
-    userSettings.save  
+    chosen_artists = [
+      { user: user, order: 1 },
+      { user: user, order: 2 },
+      { user: user, order: 3 }
+    ]
+    chosen_artists = ChosenArtist.create!(chosen_artists) 
+    chosen_genres = [
+      { user: user, order: 1 },
+      { user: user, order: 2 },
+      { user: user, order: 3 }
+    ]
+    chosen_genres = ChosenGenre.create!(chosen_genres) 
+    chosen_tag = [
+      { user: user, order: 1 }
+    ]
+    chosen_tag = ChosenTag.create!(chosen_tag)         
+    userSettings.save     
+    user.save   
     session[:user_id] = user.id
   end
 end

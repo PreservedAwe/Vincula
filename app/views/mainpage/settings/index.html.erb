@@ -2,37 +2,40 @@
   <%= render "shared/sidebar" %>
   <div class="border border-dashed text-center overflow-scroll h-100 w-100">
     <div class="col-md-10 mx-auto col-lg-5">
-      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/edit_settings" method="post" enctype="multipart/form-data" >
-        
+      <%= render "shared/flash_messages" %>
+      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/edit_settings" method="post"  >
         <div class="form-floating mb-3" data-controller="artist-search">
             <input data-artist-search-target="input" id="artist_1" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">  
-            <label for="artist-1">Artist</label>    
-            <select data-artist-search-target="dropdown" name="artist-1">
+            <label for="artist_1">Artist</label>    
+            <select data-artist-search-target="dropdown" name="artist_1">
                 <!-- Options will be populated by Stimulus -->
+                <option value="<%= @current_user.setting.artist_id %>" selected><%=  @current_user.setting.artist_id.present? ? RSpotify::Artist.find(@current_user.setting.artist_id).name : ''  %></option>
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="genre-search">
-            <input data-genre-search-target="input" id="genre-1" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
-            <label for="genre-1">Genre</label>    
+            <input data-genre-search-target="input" id="genre_1" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
+            <label for="genre_1">Genre</label>    
             <select data-genre-search-target="dropdown" name="genre_1" >
                 <!-- Options will be populated by Stimulus -->
-                <option value="option2" selected>Option 2</option>
+                <option value="<%= @current_user.setting.genre_id %>" selected><%= Genre.find_by(id: @current_user.setting.genre_id)&.name %></option>
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="tag-search">
-            <input data-tag-search-target="input" id="tag-1" class="form-control" data-action="tag-search#loadTags" type="text" placeholder="Search for tags...">  
-            <label for="tag-1">Tag</label>    
+            <input data-tag-search-target="input" id="tag_1" class="form-control" data-action="tag-search#loadTags" type="text" placeholder="Search for tags...">  
+            <label for="tag_1">Tag</label>    
             <select data-tag-search-target="dropdown" name="tag_1">
                 <!-- Options will be populated by Stimulus -->
+                <option value="<%= @current_user.setting.tag_id %>" selected><%= Tag.find_by(id: @current_user.setting.tag_id)&.name %></option>
             </select>
         </div>
         <div class="form-floating mb-3" > 
-          <select class="form-control" id ="type" class="form-floating mb-3" name="type">
-              <option value="option2" selected>Genre</option>
-              <option value="option2" >Tag</option>
-              <option value="option2" >Artist</option>
+          <select class="form-control" id ="search_type" name="search_type">
+            <option value="<%= @current_user.setting.search_type %>" selected><%= SearchType.find(@current_user.setting.search_type).name %></option>
+            <% @search_types.each do |type| %>
+              <option value="<%= type.id %>" ><%= type.name %></option>
+            <% end %>
           </select>
-          <label for="type">Search Type</label> 
+          <label for="search_type">Search Type</label> 
         </div>                           
         <div data-controller="slider" class="form-floating mb-3">
           <input class="form-control" type="range" id="distance" name="distance" min="1" max="100" value="<%= @current_user.setting.max_distance %>" data-target="slider.input" data-action="slider#updateValue">

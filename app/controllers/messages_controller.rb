@@ -4,7 +4,11 @@ class MessagesController < ApplicationController
   def index
     current_user = User.find(session[:user_id])
     @rooms = Room.total(current_user.id)
-    render "mainpage/messages/index"
+    if @rooms.first != []
+      render "mainpage/messages/index"
+    else
+      render "mainpage/messages/empty"      
+    end
   end
 
   def direct

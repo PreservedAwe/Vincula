@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_28_152228) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_29_182140) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,30 +40,30 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_152228) do
   end
 
   create_table "chosen_artists", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "setting_id"
     t.string "artist_id"
+    t.integer "user_id"
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chosen_artists_on_user_id"
   end
 
   create_table "chosen_genres", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "setting_id"
     t.string "genre_id"
     t.integer "order"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chosen_genres_on_user_id"
   end
 
   create_table "chosen_tags", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "setting_id"
     t.string "tag_id"
+    t.integer "user_id"
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chosen_tags_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -89,8 +89,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_152228) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "search_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "settings", force: :cascade do |t|
     t.integer "max_distance"
+    t.string "artist_id"
+    t.string "genre_id"
+    t.string "tag_id"
+    t.integer "search_type"
     t.integer "user_id"
     t.boolean "is_enabled"
     t.datetime "created_at", null: false

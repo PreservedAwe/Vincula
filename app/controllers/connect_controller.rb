@@ -9,12 +9,12 @@ class ConnectController < ApplicationController
   end
 
   def create_preferences(user)
-    if user.settings.type == "Artist"
-      chosen_artists = ChosenArtist.where(artist_id: user.settings.artist_id)
+    if user.setting.search_type == "Artist"
+      chosen_artists = ChosenArtist.where(artist_id: user.setting.artist_id)
       chosen_artists.each do |chosen|
-        @searched_users = User.nearby(chosen.user, user)
+        @searched_users += User.nearby(chosen.user, user)
       end
-    elsif user.settings.type == "Genre"
+    elsif user.setting.search_type == "Genre"
     else
       
     end

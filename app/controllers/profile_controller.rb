@@ -50,7 +50,20 @@ class ProfileController < ApplicationController
         params[:profile_songs].each do |song|
             temp_user.profile_songs.attach(song)
         end
-      end  
+      end
+      count = temp_user.chosen_artists.count
+      temp_user.chosen_artists.each do |chosen|
+        count += 1
+        chosen.artist_id = params["artist_#{count}"] 
+      end
+      count = 0
+      count = temp_user.chosen_genres.count
+      temp_user.chosen_genres.each do |chosen|
+        count += 1
+        chosen.genre_id = params["genre_#{count}"] 
+      end
+      count = 0      
+      temp_user.chosen_tag.tag_id = params[:tag_1] 
       if temp_user.save
         redirect_to "/edit_profile", notice: "Account Update Successful"
       else

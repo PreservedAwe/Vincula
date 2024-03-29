@@ -6,7 +6,7 @@ class CreateSettings < ActiveRecord::Migration[7.1]
       t.string :artist_id
       t.string :genre_id
       t.string :tag_id
-      t.string :type
+      t.integer :search_type
       t.references :user
       t.boolean :is_enabled
       

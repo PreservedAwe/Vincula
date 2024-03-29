@@ -6,13 +6,13 @@ class User < ApplicationRecord
     has_one :setting, dependent: :destroy
     has_many :rooms
     has_many :messages
-    has_many :chosen_artists
-    has_many :chosen_genres
-    has_many :chosen_tags
+    has_many :chosen_artists, dependent: :destroy, autosave: true
+    has_many :chosen_genres, dependent: :destroy, autosave: true
+    has_one :chosen_tag, dependent: :destroy, autosave: true
     
     scope :nearby, -> (other_user, current_user) do
-        where("(id = ? AND recipient_id = ?) OR (sender_id = ? AND recipient_id = ?)",
-        other_user.id, current_user.id, recipient_id, sender_id)
+        where("(id = ? AND ? <= ?)",
+        other_user.id, distance_from(other_user, current_user), current_user.settings.max_distance)
     end    
 
     def distance_from(other_user, current_user)

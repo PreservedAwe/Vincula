@@ -10,17 +10,6 @@
 
 # Real User data sample
 
-# Seed users
-user1 = User.create!(email: 'user1@ex.com', password: 'password1', username: 'taestyy11', ip_address: "173.242.180.229")
-user2 = User.create!(email: 'user2@ex.com', password: 'password2', username: 'taestyy40222', ip_address: "192.206.151.131")
-user1.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
-user2.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
-
-# Seed settings
-user1Settings = user1.create_setting(max_distance: 36, user: user1)   
-user2Settings = user2.create_setting(max_distance: 15, user: user2)  
-
-
 # Seed all genres
 genres = [
  { name: 'Heavy Metal' },
@@ -72,6 +61,51 @@ tags = [
 ]
 
 Tag.create!(tags)
+
+# Seed all search types
+search_types = [
+ { name: 'Genre' },
+ { name: 'Tag' },
+ { name: 'Artist' }
+]
+
+SearchType.create!(search_types)
+
+# Seed users
+user1 = User.create!(email: 'user1@ex.com', password: 'password1', username: 'taestyy11', ip_address: "173.242.180.229")
+user2 = User.create!(email: 'user2@ex.com', password: 'password2', username: 'taestyy40222', ip_address: "192.206.151.131")
+user1.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
+user2.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
+
+# Seed settings
+user1Settings = user1.create_setting(max_distance: 36, user: user1, is_enabled: true, genre_id: 1, search_type: 1)   
+user2Settings = user2.create_setting(max_distance: 78, user: user2, is_enabled: false, genre_id: 1, search_type: 2)  
+
+chosen_artists = [
+    { user: user1, order: 1 },
+    { user: user1, order: 2 },
+    { user: user1, order: 3 },
+    { user: user2, order: 1 },
+    { user: user2, order: 2 },
+    { user: user2, order: 3 }
+  ]
+  chosen_artists = ChosenArtist.create!(chosen_artists) 
+  chosen_genres = [
+    { user: user1, order: 1 },
+    { user: user1, order: 2 },
+    { user: user1, order: 3 },
+    { user: user2, order: 1 },
+    { user: user2, order: 2 },
+    { user: user2, order: 3 }
+  ]
+  chosen_genres = ChosenGenre.create!(chosen_genres) 
+  chosen_tag = [
+    { user: user1, order: 1 },
+    { user: user2, order: 1 }
+  ]
+  chosen_tag = ChosenTag.create!(chosen_tag) 
+
+
 
 # Path to the video file guide help
 #video_path = Rails.root.join('db/videos/example_video.mp4')
