@@ -12,10 +12,10 @@ class User < ApplicationRecord
     
     scope :nearby, -> (other_user, current_user) do
         where("(id = ? AND ? <= ?)",
-        other_user.id, distance_from(other_user, current_user), current_user.settings.max_distance)
+        other_user.id, self.distance_from(other_user, current_user), current_user.setting.max_distance)
     end    
 
-    def distance_from(other_user, current_user)
+    def self.distance_from(other_user, current_user)
         Geocoder::Calculations.distance_between(
             Geocoder.search(current_user.ip_address).first.coordinates,
             Geocoder.search(other_user.ip_address).first.coordinates,

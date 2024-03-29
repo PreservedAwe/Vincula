@@ -64,9 +64,9 @@ Tag.create!(tags)
 
 # Seed all search types
 search_types = [
+ { name: 'Artist' },
  { name: 'Genre' },
- { name: 'Tag' },
- { name: 'Artist' }
+ { name: 'Tag' }
 ]
 
 SearchType.create!(search_types)
@@ -90,6 +90,7 @@ chosen_artists = [
     { user: user2, order: 3 }
   ]
   chosen_artists = ChosenArtist.create!(chosen_artists) 
+
   chosen_genres = [
     { user: user1, order: 1 },
     { user: user1, order: 2 },
@@ -99,9 +100,10 @@ chosen_artists = [
     { user: user2, order: 3 }
   ]
   chosen_genres = ChosenGenre.create!(chosen_genres) 
+
   chosen_tag = [
-    { user: user1, order: 1 },
-    { user: user2, order: 1 }
+    { user: user1, order: 1 , tag_id: 1},
+    { user: user2, order: 1 , tag_id: 2}
   ]
   chosen_tag = ChosenTag.create!(chosen_tag) 
 
