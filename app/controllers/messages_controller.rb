@@ -14,13 +14,19 @@ class MessagesController < ApplicationController
   def direct
     messaged_user = User.find_by(username: params[:user])
     current_user = User.find(session[:user_id])
-    if Room.between(current_user.id, messaged_user.id).present?
-      @room = Room.between(current_user.id, messaged_user.id).first
+    if messaged_user
+      if Room.between(current_user.id, messaged_user.id).present?
+        @room = Room.between(current_user.id, messaged_user.id).first
+      else
+        @room = Room.create!(sender_id: current_user.id, recipient_id: messaged_user.id)
+      end    
+      @room.save  
+      render "mainpage/messages/direct_message"
     else
-      @room = Room.create!(sender_id: current_user.id, recipient_id: messaged_user.id)
-    end    
-    @room.save  
-    render "mainpage/messages/direct_message"
+      render "mainpage/messages/direct_message_nil"
+    end
+
+    
   end
 
   def send_message
