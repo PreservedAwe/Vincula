@@ -34,8 +34,8 @@ Rails.application.routes.draw do
   get '/support', to: 'support#index'
   get '/get_location', to: 'profile#get_location'
 
-  # Catch-all route
-  #match '*path', to: 'errors#index', via: :all, constraints: -> (req) { !req.env['HTTP_CONNECTION'].include?('upgrade') }
+  # Catch-all non declared routes
+  match '*unmatched_route', to: 'errors#index', via: :all
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
