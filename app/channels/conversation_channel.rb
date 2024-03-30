@@ -1,4 +1,4 @@
-class RoomChannel < ApplicationCable::Channel
+class ConversationChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
   end
