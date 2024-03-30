@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/messages' , to: 'messages#index'
   get '/direct_messages' , to: 'messages#direct'
   get '/connect' , to: 'connect#index'
+  get '/connect_profile' , to: 'connect#view_profile'
   get '/find' , to: 'find#index'
   get '/view_searched' , to: 'find#view_profile'
   get '/search_artist' , to: 'profile#search_artist'
@@ -33,6 +34,8 @@ Rails.application.routes.draw do
   get '/support', to: 'support#index'
   get '/get_location', to: 'profile#get_location'
 
+  # Catch-all route
+  #match '*path', to: 'errors#index', via: :all, constraints: -> (req) { !req.env['HTTP_CONNECTION'].include?('upgrade') }
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -41,6 +44,4 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

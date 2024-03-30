@@ -33,6 +33,7 @@ module Vincula
      )    
 
     config.action_cable.mount_path = '/websocket'
+
     
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.

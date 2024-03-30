@@ -33,6 +33,12 @@ class RegisterController < ApplicationController
     user = User.create!(email: params[:email], password: params[:password], username: params[:username])
     user.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default-user.png')), filename: 'default-user.png', content_type: 'image/png')
     user.ip_address = request.remote_ip
+    if user.ip_address == "127.0.0.1"
+      user.ip_address = "205.211.157.84"
+    elsif user.ip_address == nil
+      user.ip_address = "142.181.120.13"
+    else
+    end
     userSettings = user.create_setting(user: user)  
     chosen_artists = [
       { user: user, order: 1 },
@@ -49,7 +55,10 @@ class RegisterController < ApplicationController
     chosen_tag = [
       { user: user, order: 1 }
     ]
-    chosen_tag = ChosenTag.create!(chosen_tag)         
+    chosen_tag = ChosenTag.create!(chosen_tag)  
+    userSettings.search_type = 1
+    userSettings.is_enabled = false   
+    userSettings.max_distance = 50    
     userSettings.save     
     user.save   
     session[:user_id] = user.id
