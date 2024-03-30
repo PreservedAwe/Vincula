@@ -28,9 +28,14 @@ class ProfileController < ApplicationController
   end
 
   def get_location
-    ip = request.remote_ip
     temp_user = User.find(session[:user_id]) 
-    temp_user.ip_address = ip
+    temp_user.ip_address = request.remote_ip
+    if temp_user.ip_address == "127.0.0.1"
+      temp_user.ip_address = "205.211.157.84"
+    elsif temp_user.ip_address == nil
+      temp_user.ip_address = "142.181.120.13"
+    else
+    end
     temp_user.save
     redirect_to "/edit_profile"
   end
@@ -51,13 +56,12 @@ class ProfileController < ApplicationController
             temp_user.profile_songs.attach(song)
         end
       end
-      count = temp_user.chosen_artists.count
+      count = 0
       temp_user.chosen_artists.each do |chosen|
         count += 1
         chosen.artist_id = params["artist_#{count}"] 
       end
       count = 0
-      count = temp_user.chosen_genres.count
       temp_user.chosen_genres.each do |chosen|
         count += 1
         chosen.genre_id = params["genre_#{count}"] 

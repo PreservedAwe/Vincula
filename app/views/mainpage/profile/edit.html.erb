@@ -45,6 +45,7 @@
             <label for="artist_1">Artist 1</label>    
             <select data-artist-search-target="dropdown" name="artist_1">
                 <!-- Options will be populated by Stimulus -->
+                <option value="<%= @current_user.chosen_artists.first.artist_id %>" selected><%=  @current_user.chosen_artists.first.artist_id.present? ? RSpotify::Artist.find(@current_user.chosen_artists.first.artist_id).name : ''  %></option>
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="artist-search">
@@ -52,6 +53,7 @@
             <label for="artist_2">Artist 2</label>
             <select data-artist-search-target="dropdown" name="artist_2">
                 <!-- Options will be populated by Stimulus -->
+                <option value="<%= @current_user.chosen_artists.offset(1).first.artist_id %>" selected><%=  @current_user.chosen_artists.offset(1).first.artist_id.present? ? RSpotify::Artist.find(@current_user.chosen_artists.offset(1).first.artist_id).name : ''  %></option>
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="artist-search">
@@ -59,6 +61,7 @@
             <label for="artist_3">Artist 3</label>
             <select data-artist-search-target="dropdown" name="artist_3">
                 <!-- Options will be populated by Stimulus -->
+                <option value="<%= @current_user.chosen_artists.offset(2).first.artist_id %>" selected><%=  @current_user.chosen_artists.offset(2).first.artist_id.present? ? RSpotify::Artist.find(@current_user.chosen_artists.offset(2).first.artist_id).name : ''  %></option>
             </select>
         </div>
         <div class="form-floating mb-3" data-controller="genre-search">
@@ -66,7 +69,7 @@
             <label for="genre_1">Genre 1</label>    
             <select data-genre-search-target="dropdown" name="genre_1" >
                 <!-- Options will be populated by Stimulus -->
-                <option value="option2" selected>Option 2</option>
+                <option value="<%= @current_user.chosen_genres.first.genre_id %>" selected><%= Genre.find_by(id: @current_user.chosen_genres.first.genre_id)&.name %></option>
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="genre-search">
@@ -74,6 +77,7 @@
             <label for="genre_2">Genre 2</label>    
             <select data-genre-search-target="dropdown" name="genre_2">
                 <!-- Options will be populated by Stimulus -->
+                <option value="<%= @current_user.chosen_genres.offset(1).first.genre_id %>" selected><%= Genre.find_by(id: @current_user.chosen_genres.offset(1).first.genre_id)&.name %></option>
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="genre-search">
@@ -81,6 +85,7 @@
             <label for="genre_3">Genre 3</label>    
             <select data-genre-search-target="dropdown" name="genre_3">
                 <!-- Options will be populated by Stimulus -->
+                <option value="<%= @current_user.chosen_genres.offset(2).first.genre_id %>" selected><%= Genre.find_by(id: @current_user.chosen_genres.offset(2).first.genre_id)&.name %></option>
             </select>
         </div> 
         <div class="form-floating mb-3" data-controller="tag-search">
@@ -88,6 +93,7 @@
             <label for="tag_1">Tag 1</label>    
             <select data-tag-search-target="dropdown" name="tag_1">
                 <!-- Options will be populated by Stimulus -->
+                <option value="<%= @current_user.chosen_tag.tag_id %>" selected><%= Tag.find_by(id: @current_user.chosen_tag.tag_id)&.name %></option>
             </select>
         </div>                
                              

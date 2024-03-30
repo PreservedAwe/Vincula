@@ -18,26 +18,23 @@ class ConnectController < ApplicationController
       if user.setting.search_type == 1
         chosen_artists = ChosenArtist.where(artist_id: user.setting.artist_id)
         chosen_artists.each do |chosen|
-          @searched_users.concat(User.nearby(chosen.user, user).limit(10)) 
+          @searched_users.concat(User.excluding(user).nearby(chosen.user, user))
         end
-        return @searched_users.uniq
       elsif user.setting.search_type == 2
         chosen_genres = ChosenGenre.where(genre_id: user.setting.genre_id)
         chosen_genres.each do |chosen|
-          @searched_users.concat(User.nearby(chosen.user, user).limit(10)) 
+          @searched_users.concat(User.excluding(user).nearby(chosen.user, user)) 
         end      
-        return @searched_users.uniq
       else
         chosen_tags = ChosenTag.where(tag_id: user.setting.tag_id)
         chosen_tags.each do |chosen|
-          @searched_users.concat(User.nearby(chosen.user, user).limit(10)) 
-        end    
-        return @searched_users.uniq  
+          @searched_users.concat(User.excluding(user).nearby(chosen.user, user)) 
+        end     
       end
     else
       @searched_users = User.excluding(user).all.limit(10)
-      return @searched_users.uniq
     end
-
+    @searched_users = @searched_users.uniq
+    return FisherYates.shuffle(@searched_users).first(10) 
   end
 end
