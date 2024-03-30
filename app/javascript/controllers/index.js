@@ -10,6 +10,9 @@ application.register("artist-search", ArtistSearchController)
 import GenreSearchController from "./genre_search_controller"
 application.register("genre-search", GenreSearchController)
 
+import MaintainConnectionController from "./maintain_connection_controller"
+application.register("maintain-connection", MaintainConnectionController)
+
 import SliderController from "./slider_controller"
 application.register("slider", SliderController)
 

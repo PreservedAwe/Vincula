@@ -10,7 +10,7 @@
     <%= stylesheet_link_tag "custom_style", "data-turbo-track": "reload" %>
     <%= action_cable_meta_tag %>
   </head>
-  <body class ="pageBodyy vh-100">
+  <body class ="pageBodyy vh-100" data-controller="maintain-connection">
     <%= yield %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </body>

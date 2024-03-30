@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   get '/get_location', to: 'profile#get_location'
 
   # Catch-all non declared routes
-  match '*unmatched_route', to: 'errors#index', via: :all
+  match '*unmatched_route', to: 'errors#index', via: :all, constraints: lambda { |req|
+  req.path.exclude? 'rails/active_storage'}
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
