@@ -3,7 +3,7 @@
   <div class="flex-column border border-dashed text-center h-100 w-100">
     <h1 class="mt-5 mb-3">Direct Messages</h1>
     <!-- Chat container -->
-    <div class="chat-container border rounded p-3">
+    <div class="chat-container border rounded p-3" data-controller="maintain-messages" data-maintain-messages-room-id="<%= @room.id %>">
       <% @room.messages.each do |message| %>
         <div class="chat-message">
           <strong><%= message.user.username %>:</strong> <%= message.body %>

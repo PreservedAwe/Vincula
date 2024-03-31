@@ -32,8 +32,6 @@ module Vincula
       units: :km
      )    
 
-    config.action_cable.mount_path = '/websocket'
-
     config.exceptions_app = self.routes
 
 

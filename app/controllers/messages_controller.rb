@@ -19,6 +19,8 @@ class MessagesController < ApplicationController
         @room = Room.between(current_user.id, messaged_user.id).first
       else
         @room = Room.create!(sender_id: current_user.id, recipient_id: messaged_user.id)
+        ActionCable.server.broadcast("user_#{current_user.id}", {data: @room})
+        ActionCable.server.broadcast("user_#{messaged_user.id}", {data: @room})
       end    
       @room.save  
       render "mainpage/messages/direct_message"
@@ -32,6 +34,7 @@ class MessagesController < ApplicationController
   def send_message
     message = Message.create!(body: params[:message], user: User.find(session[:user_id]), room: Room.find(params[:room]))
     message.save
+    ActionCable.server.broadcast("room_#{message.room.id}", {data: message})
   end
 
 end

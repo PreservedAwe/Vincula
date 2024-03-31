@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   get '/support', to: 'support#index'
   get '/get_location', to: 'profile#get_location'
 
+  #Mount action cable server
+  mount ActionCable.server => '/realtime'
+
   # Catch-all non declared routes
   match '*unmatched_route', to: 'errors#index', via: :all, constraints: lambda { |req|
   req.path.exclude? 'rails/active_storage'}
