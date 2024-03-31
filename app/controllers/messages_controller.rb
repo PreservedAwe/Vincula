@@ -32,9 +32,10 @@ class MessagesController < ApplicationController
   end
 
   def send_message
-    message = Message.create!(body: params[:message], user: User.find(session[:user_id]), room: Room.find(params[:room]))
+    user = User.find(session[:user_id])
+    message = Message.create!(body: params[:message], user: user, room: Room.find(params[:room]))
     message.save
-    ActionCable.server.broadcast("room_#{message.room.id}", {data: message})
+    ActionCable.server.broadcast("room_#{message.room.id}", {username: user.username, body: message.body})
   end
 
 end

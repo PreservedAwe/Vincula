@@ -1,7 +1,7 @@
 <main class=" d-flex flex-nowrap vh-100">
   <%= render "shared/sidebar" %>
   <div class="position-relative text-center text-muted bg-body border border-dashed overflow-scroll">
-    <div class="list-group vw-100" data-controller="maintain-rooms" data-maintain-rooms-user-username="<%= User.find(session[:user_id]).username %>">
+    <div class="list-group vw-100 overflow-scroll" data-controller="maintain-rooms" data-maintain-rooms-user-username="<%= User.find(session[:user_id]).username %>">
       <% @rooms.each do |room| %>
         <% if room.recipient_id == session[:user_id] %> 
           <% user = User.find(room.sender_id) %>   

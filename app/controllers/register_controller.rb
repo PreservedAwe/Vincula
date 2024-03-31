@@ -13,6 +13,7 @@ class RegisterController < ApplicationController
 
     if !User.exists?(email: params[:email]) && !User.exists?(username: params[:username]) && params[:password] == params[:confirmPassword]
       create_user
+      cookies.encrypted[:user_id] = session[:user_id]
       session[:r_email] = nil
       session[:r_username] = nil
       redirect_to "/menu" 

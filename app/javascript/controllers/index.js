@@ -16,6 +16,9 @@ application.register("maintain-messages", MaintainMessagesController)
 import MaintainRoomsController from "./maintain_rooms_controller"
 application.register("maintain-rooms", MaintainRoomsController)
 
+import ResetFormController from "./reset_form_controller"
+application.register("reset-form", ResetFormController)
+
 import SliderController from "./slider_controller"
 application.register("slider", SliderController)
 
