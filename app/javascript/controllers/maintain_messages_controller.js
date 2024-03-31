@@ -17,17 +17,21 @@ export default class extends Controller {
 
   subscribeToMessageChannel() {
     const room_id = this.data.get("room-id")
-    this.messages_subcription = consumer.subscriptions.create({ channel: "MessageChannel", room_id: room_id }, {
-    received(data) {
-      // Handle incoming room messages
-      messageElement = document.createElement("div")
-      messageElement.classList.add("chat-message")
-      messageElement.innerHTML = `
-        <strong>${data.username}:</strong> ${data.body}
-      `        
-      this.messagesTarget.appendChild(messageElement)
-    }
-  })
+    if (!this.messages_subcription) {
+      this.messages_subcription = consumer.subscriptions.create({ channel: "MessageChannel", room_id: room_id }, {
+        received: (data) => {
+          // Handle incoming room messages
+          console.log('Creating New Message')
+          messageElement = document.createElement("div")
+          messageElement.classList.add("chat-message")
+          messageElement.innerHTML = `
+            <strong>${data.username}:</strong> ${data.body}
+          `        
+          this.messagesTarget.appendChild(messageElement)
+        }
+      })
+    }    
+    console.log(this.rooms_subscription)
   }
 
   unsubscribeFromMessageChannel() {

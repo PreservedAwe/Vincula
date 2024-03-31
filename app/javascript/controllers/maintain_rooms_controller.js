@@ -15,12 +15,15 @@ export default class extends Controller {
 
   subscribeToRoomChannel() {
     const user_username = this.data.get("user-username")
-    this.rooms_subscription = consumer.subscriptions.create({ channel: "RoomChannel", username: user_username }, {
-    received(data) {
-      // Handle incoming room messages
+    if (!this.rooms_subscription) {
+      this.rooms_subscription = consumer.subscriptions.create({ channel: "RoomChannel", username: user_username }, {
+        received(data) {
+          // Handle incoming room messages
+          }
+        })
+        console.log(this.rooms_subscription)
+        }
     }
-  })
-  }
 
   unsubscribeFromRoomChannel() {
     console.log(this.rooms_subscription)

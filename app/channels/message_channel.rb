@@ -5,6 +5,7 @@ class MessageChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
+    room = Room.find(params[:room_id])
+    stop_stream_from "room_#{room.id}"
   end
 end
