@@ -2,20 +2,64 @@
   <img src="<%= rails_blob_path(@current_user.profile_picture) %>" class="card-img-top h-10 w-60" alt="Profile Picture(Browser doesn't support picture)">
   <div class="card-body">
     <h5 class="card-title"><%= @current_user.username %></h5>
-    <% userLocation = Geocoder.search(@current_user.ip_address).first %>
+    <h3 class="card-title"><%= Tag.find_by(id: @current_user.chosen_tag.tag_id)&.name %></h3>
+    <% userLocation = Geocoder.search(@current_user.ip_address)&.first %>
     <p class="card-text">Location:<%= userLocation.city %>, <%= userLocation.country %></p>
-    <% genres = ChosenGenre.find_by(user_id: @current_user.id) %>
-    <% artists = ChosenArtist.find_by(user_id: @current_user.id) %>
-    <% tags = ChosenTag.find_by(user_id: @current_user.id) %>
-    <ol class="list-group list-group-numbered">
-      <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-          <div class="fw-bold"><%= %></div>
-          Content for list item
-        </div>
-        <span class="badge text-bg-primary rounded-pill">14</span>
-      </li>
-    </ol>   
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h2 class="mt-4 mb-3">Selected Artists</h2>
+    <ul class="list-group">
+      <% @current_user.chosen_artists.each do |chosen| %>
+        <% if a_info =  chosen.artist_id.present? ? RSpotify::Artist.find(chosen.artist_id) : nil %>
+        <li class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <img src="<%= a_info.images.first['url'] %>" class="img-thumbnail" alt="Artist Image" style="max-width: 110px;">
+            </div>
+            <div class="col">
+              <h4><%= a_info.name %></h4>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br/>
+    <h2 class="mt-4 mb-3">Selected Genres</h2>
+    <ul class="list-group">
+      <% @current_user.chosen_genres.each do |chosen| %>
+        <% if g_info =  chosen.genre_id.present? ? Genre.find(chosen.genre_id) : nil %>
+        <li class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col">
+              <h4><%= g_info.name %></h4>
+            </div>
+          </div>
+        </li>
+        <% end %>
+      <% end %>
+    </ul>       
+    <h2 class="mt-4 mb-3">Songs</h2>
+    <ul class="list-group">
+      <% @current_user.profile_songs.each do |song| %>
+        <li class="list-group-item">
+          <div class="row align-items-center">
+            <div class="col">
+              <audio controls>
+                <source src="<%=   %>" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul> 
+    <h2 class="mt-4 mb-3">Main Video</h2>
+    <% if @current_user.profile_video.present? %>
+      <div class="embed-responsive embed-responsive-16by9 w-60">
+        <video class="embed-responsive-item" controls>
+          <source src="<%=  %>" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>   
+    <% end %>     
   </div>
 </div>

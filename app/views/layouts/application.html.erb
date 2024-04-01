@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "custom_style", "data-turbo-track": "reload" %>
   </head>
-  <body class ="pageBodyy vh-100" data-controller="maintain-connection">
+  <body class ="pageBody vh-100 container-fluid " >
     <input type="hidden" id="user_id" name="user_id" value="Wall Street! Money Never Sleep"/>
     <%= yield %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>

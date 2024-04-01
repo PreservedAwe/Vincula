@@ -1,8 +1,39 @@
  .pageBody {
-    background-color: #000F9C;
-    color: #B60000;
+   background-image: linear-gradient(to top, #0fbdd6, #27a6bb, #3190a1, #347b87, #35666f, #3d656d, #43646a, #496368, #5b757b, #6e898e, #819ca2, #95b0b6);
+   color: black;
+   font-family: cursive;
  }
 
- .extraPart {
-    background-color: #A600AD;
+ .mainText{
+   color: black;
+   font-family: cursive;
+   text-decoration: none;
  }
+
+ .backgroundVid {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover; /* Cover the entire container */
+ }
+
+ .mainPart {
+   z-index: 100;
+   
+ }
+
+ .footer {
+   height: 10%; /* Adjust height as needed */
+   width: 100%;
+   position: fixed; 
+   bottom: 0;
+   z-index: 1000;
+ }
+
+ .header {
+   height: 10%;
+   width: 100%;
+   z-index: 1000;
+ } 

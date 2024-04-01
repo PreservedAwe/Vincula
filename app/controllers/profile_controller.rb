@@ -78,4 +78,19 @@ class ProfileController < ApplicationController
     end
   end
 
+  def stream_media(user)
+    if user.profile_video.attached?
+      http_cache_forever(public: true) do
+        send_blob_stream user.profile_video, disposition: 'inline'
+      end
+    else
+    end
+
+    user.profile_songs.each do |song|
+      http_cache_forever(public: true) do
+        send_blob_stream song, disposition: 'inline'
+      end      
+    end
+ end
+
 end
