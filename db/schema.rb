@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_03_29_182140) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -41,7 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_182140) do
 
   create_table "chosen_artists", force: :cascade do |t|
     t.string "artist_id"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,7 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_182140) do
   create_table "chosen_genres", force: :cascade do |t|
     t.string "genre_id"
     t.integer "order"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_chosen_genres_on_user_id"
@@ -59,7 +62,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_182140) do
 
   create_table "chosen_tags", force: :cascade do |t|
     t.string "tag_id"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,8 +77,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_182140) do
 
   create_table "messages", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id"
-    t.integer "room_id"
+    t.bigint "user_id"
+    t.bigint "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
@@ -101,7 +104,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_29_182140) do
     t.string "genre_id"
     t.string "tag_id"
     t.integer "search_type"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.boolean "is_enabled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
