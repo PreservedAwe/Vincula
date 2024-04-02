@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  url: <%= ENV['DB_EXT_HOST'] %>
+  url: <%= ENV.fetch("DB_EXT_HOST", "postgres://db_vincula_user:kp16W0lC7UOeuQxQsRvUbZOYv4viKAKz@dpg-co64phol5elc73abki90-a.oregon-postgres.render.com/db_vincula") %>
   
 
   # The specified database role being used to connect to PostgreSQL.
@@ -81,4 +81,4 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DB_INT_HOST'] %>
+  url: <%= ENV.fetch("DB_INT_HOST", "postgres://db_vincula_user:kp16W0lC7UOeuQxQsRvUbZOYv4viKAKz@dpg-co64phol5elc73abki90-a/db_vincula") %>
