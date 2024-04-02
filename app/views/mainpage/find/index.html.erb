@@ -1,13 +1,13 @@
 <%= render "shared/sidebar" %>
-<div class="text-center overflow-scroll appSection">
+<div class="text-center overflow-scroll border rounded-3 appSection">
   <div class="col-md-10 mx-auto col-lg-5">
-    <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary vh-100" action="/find" method="post" enctype="multipart/form-data" >
+    <form class="p-4 p-md-5 border rounded-3 appSectionInner" action="/find" method="post" enctype="multipart/form-data" >
       <%= render "shared/flash_messages" %>
       <div class="form-floating mb-3">
         <input type="text" class="form-control" id="username" name="username" placeholder="Search for users" required>
         <label for="username">Username</label>
       </div>     
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Find User</button>
+      <button class="w-100 btn btn-lg btn-outline-light" type="submit">Find User</button>
       <hr class="my-4">
       <p class="col-lg-6 mx-auto mb-4">
         Enter a user's username to view their profile

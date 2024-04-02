@@ -1,48 +1,48 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 sidebar mainText" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+<div class="d-flex flex-column flex-shrink-0 p-3 sidebar appSectionInner" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none navbarLinks">
       <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4 mainText">Vincula</span>
+      <span class="fs-4 mainText navbarLinks">Vincula</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
         <a href="/menu" class="nav-link link-body-emphasis ">
           <svg class="bi pe-none me-2 " width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          <span class=" mainText">Menu Links</span>
+          <span class=" mainText navbarLinks">Menu Links</span>
         </a>
       </li>
       <li>
         <a href="/connect" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-          <span class=" mainText">Connect</span>
+          <span class=" mainText navbarLinks">Connect</span>
         </a>
       </li>
       <li>
         <a href="/messages" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-          <span class=" mainText">Messages</span>        
+          <span class=" mainText navbarLinks">Messages</span>        
         </a>
       </li>
       <li>
         <a href="/find" class="nav-link link-body-emphasis">
           <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-          <span class=" mainText">Find</span>     
+          <span class=" mainText navbarLinks">Find</span>     
         </a>
       </li>
     </ul>
     <hr>
     <div class="dropdown">
       <% current_user = User.find(session[:user_id]) %>
-      <a href="/profile" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <a href="/profile" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
         <img src="<%= rails_blob_path(current_user.profile_picture) %>" alt="PP" width="32" height="32" class="rounded-circle me-2">
-        <strong class="mainText"><%= current_user.username %></strong>
+        <strong class="mainText navbarLinks"><%= current_user.username %></strong>
       </a>
-      <ul class="dropdown-menu text-small shadow ">
-        <li><a class="dropdown-item " href="/settings">Settings</a></li>
-        <li><a class="dropdown-item " href="/profile">Profile</a></li>
+      <ul class="dropdown-menu text-small shadow border rounded-3 appSectionInner">
+        <li><a class="dropdown-item mainText navbarLinksb" href="/settings">Settings</a></li>
+        <li><a class="dropdown-item mainText navbarLinksb" href="/profile">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
-        <div data-turbo="false" >
-        <li><a class="dropdown-item " href="/log_out">Sign out</a></li>
+        <div data-turbo="false" data-controller="confirmation">
+        <li><a  data-action="confirmation#promptUser" class="dropdown-item mainText navbarLinksb" href="/log_out">Sign out</a></li>
         </div>
       </ul>
     </div>

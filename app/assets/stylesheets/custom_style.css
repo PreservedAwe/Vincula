@@ -55,9 +55,20 @@
   position: fixed; /* Positioned to the right of the sidebar */
   top: 0;
   left: 250px; 
+  border-style: solid; /* Ensure the border is visible */
+  border-width: thin; /* Set the border width to thin */
+  border-color: white; /* Set the border color to white */
  }
 
  .appSectionInner {
   background-color: black;
   color: white;
  }
+
+ .navbarLinks:hover {
+  color: #f5e769;
+ }
+
+ .navbarLinksb:hover {
+  color: #000000;
+ } 

@@ -91,6 +91,13 @@ class ProfileController < ApplicationController
         send_blob_stream song, disposition: 'inline'
       end      
     end
- end
+  end
+
+  def delete
+    current_user = User.find(session[:user_id])
+    current_user.destroy
+    session[:user_id] = nil
+    redirect_to "/"
+  end
 
 end

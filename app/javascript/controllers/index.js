@@ -7,6 +7,9 @@ import { application } from "./application"
 import ArtistSearchController from "./artist_search_controller"
 application.register("artist-search", ArtistSearchController)
 
+import ConfirmationController from "./confirmation_controller"
+application.register("confirmation", ConfirmationController)
+
 import GenreSearchController from "./genre_search_controller"
 application.register("genre-search", GenreSearchController)
 

@@ -13,6 +13,9 @@ class MessagesController < ApplicationController
 
   def direct
     messaged_user = User.find_by(username: params[:user])
+    if messaged_user.id == session[:user_id] 
+      redirect_to "/messages"
+    end
     current_user = User.find(session[:user_id])
     if messaged_user
       if Room.between(current_user.id, messaged_user.id).present?

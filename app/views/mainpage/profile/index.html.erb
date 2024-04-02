@@ -1,10 +1,13 @@
-<main class=" d-flex flex-nowrap vh-100 vw-100">
-  <%= render "shared/sidebar" %>
-  <div class="border border-dashed text-center overflow-scroll h-100 w-100">
-    <%= render "shared/profileview" %> 
-    <a class="btn btn-outline-primary" href="/edit_profile" role="button">Edit Profile</a>
-    <a class="btn btn-outline-danger" href="/delete_profile" role="button" data-turbo="false">Delete Profile</a>     
-  </div>
-</main>
+<%= render "shared/sidebar" %>
+<div class=" text-center overflow-scroll border rounded-3 appSection">
+  <%= render "shared/profileview" %> 
+  <br/>
+  <div class="appSectionInner border rounded-3" data-controller="confirmation">
+    <a class="btn btn-outline-light" href="/edit_profile" role="button">Edit Profile</a>
+    <a data-action="confirmation#promptUser" class="btn btn-outline-danger" href="/delete_profile" role="button" data-turbo="false">Delete Profile</a>    
+  </div>   
+  
+</div>
+
 
 

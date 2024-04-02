@@ -1,11 +1,11 @@
 <%= render "shared/sidebar" %>
-<div class="border border-dashed text-center overflow-scroll appSection">
-  <div class="col-md-10 mx-auto col-lg-5">
+<div class="text-center overflow-scroll appSection border rounded-3">
+  <div class="col-md-10 mx-auto col-lg-5 appSectionInner">
     <%= render "shared/flash_messages" %>
-    <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/edit_settings" method="post"  >
+    <form class="p-4 p-md-5 border rounded-3 " action="/edit_settings" method="post"  >
       <div class="form-floating mb-3" data-controller="artist-search">
           <input data-artist-search-target="input" id="artist_1" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">  
-          <label for="artist_1">Artist</label>    
+          <label class="text-dark" for="artist_1">Artist</label>    
           <select data-artist-search-target="dropdown" name="artist_1">
               <!-- Options will be populated by Stimulus -->
               <option value="<%= @current_user.setting.artist_id %>" selected><%=  @current_user.setting.artist_id.present? ? RSpotify::Artist.find(@current_user.setting.artist_id).name : ''  %></option>
@@ -13,7 +13,7 @@
       </div> 
       <div class="form-floating mb-3" data-controller="genre-search">
           <input data-genre-search-target="input" id="genre_1" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
-          <label for="genre_1">Genre</label>    
+          <label class="text-dark" for="genre_1">Genre</label>    
           <select data-genre-search-target="dropdown" name="genre_1" >
               <!-- Options will be populated by Stimulus -->
               <option value="<%= @current_user.setting.genre_id %>" selected><%= Genre.find_by(id: @current_user.setting.genre_id)&.name %></option>
@@ -21,7 +21,7 @@
       </div> 
       <div class="form-floating mb-3" data-controller="tag-search">
           <input data-tag-search-target="input" id="tag_1" class="form-control" data-action="tag-search#loadTags" type="text" placeholder="Search for tags...">  
-          <label for="tag_1">Tag</label>    
+          <label class="text-dark" for="tag_1">Tag</label>    
           <select data-tag-search-target="dropdown" name="tag_1">
               <!-- Options will be populated by Stimulus -->
               <option value="<%= @current_user.setting.tag_id %>" selected><%= Tag.find_by(id: @current_user.setting.tag_id)&.name %></option>
@@ -38,7 +38,7 @@
       </div>                           
       <div data-controller="slider" class="form-floating mb-3">
         <input class="form-control" type="range" id="distance" name="distance" min="1" max="100" value="<%= @current_user.setting.max_distance %>" data-slider-target="input" data-action="slider#updateValue">
-        <label for="distance">Max Distance (in kilometers): <span data-slider-target="value"></span></label>
+        <label class="text-dark" for="distance">Max Distance (in kilometers): <span data-slider-target="value"></span></label>
       </div>    
       <div>
         <% if @current_user.setting.is_enabled == true %>
@@ -53,7 +53,7 @@
           <label for="disabled">Disabled</label><br>            
         <% end %>
       </div>            
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Apply Changes</button>
+      <button class="w-100 btn btn-lg btn-light" type="submit">Apply Changes</button>
       <hr class="my-4">
     </form>
   </div>

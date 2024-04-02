@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/search_tag' , to: 'profile#search_tag'
   get '/settings' , to: 'settings#index'
   get '/edit_profile' , to: 'profile#edit'
+  get '/delete_profile' , to: 'profile#delete'
   get '/profile' , to: 'profile#index'
   get '/register' , to: 'register#index'
   get '/about', to: 'about#index' 

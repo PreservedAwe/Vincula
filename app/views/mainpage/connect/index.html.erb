@@ -1,8 +1,8 @@
 <%= render "shared/sidebar" %>
-<div class="position-relative text-center overflow-scroll appSection">
-  <div class="list-group appSectionInner">
+<div class="text-center border rounded-3 overflow-scroll appSection">
+  <div class="list-group appSectionInner border rounded-3">
     <% @searched_users.each do |user| %>   
-      <a href="/connect_profile?username=<%= user.username %>" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <a href="/connect_profile?username=<%= user.username %>" class="list-group-item list-group-item-action d-flex gap-3 py-3 appSectionInner" aria-current="true">
         <img src="<%= rails_blob_path(user.profile_picture) %>" alt="profile pic" width="32" height="32" class="rounded-circle flex-shrink-0">
         <div class="d-flex gap-2 w-100 justify-content-between">
           <div>

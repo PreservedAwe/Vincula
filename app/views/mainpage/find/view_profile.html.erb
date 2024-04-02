@@ -1,8 +1,11 @@
 <%= render "shared/sidebar" %>
-<div class="border border-dashed text-center overflow-scroll appSection">
+<div class="border rounded-3 text-center overflow-scroll appSection">
   <%= render "shared/profileview" %> 
-  <a class="btn btn-outline-primary" data-turbo="false" href="/direct_messages?user=<%= @current_user.username %>" role="button">Send Message</a>
-  <a class="btn btn-outline-primary" href="/find" role="button">Go Back</a>    
+  <br/>
+  <div class="appSectionInner border rounded-3">
+  <a class="btn btn-outline-light" data-turbo="false" href="/direct_messages?user=<%= @current_user.username %>" role="button">Send Message</a>
+  <a class="btn btn-outline-light" href="/find" role="button">Go Back</a>  
+  </div> 
 </div>
 
 

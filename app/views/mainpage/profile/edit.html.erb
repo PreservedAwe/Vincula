@@ -1,106 +1,104 @@
-<main class=" d-flex flex-nowrap vh-100 vw-100">
-  <%= render "shared/sidebar" %>
-  <div class="border border-dashed text-center overflow-scroll h-100 w-100">
-    <div class="col-md-10 mx-auto col-lg-5">
-      <%= render "shared/flash_messages" %>
-      <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/edit_profile" method="post" enctype="multipart/form-data" >
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="username" name="username" placeholder="michael_reeves21" value="<%= @current_user.username %>" required>
-          <label for="username">Username</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%= @current_user.email %>" required>
-          <label for="email">Email address</label>
-        </div>
-        <div class="form-floating mb-3">
-          <% userLocation = Geocoder.search(@current_user.ip_address).first %>
-          <input type="text" class="form-control" id="location" readonly value="<%= userLocation.city %>, <%= userLocation.country %>" required>
-          <label for="location">Location</label>
-          <a href="/get_location" data-turbo="false" class="btn btn-primary">Update Location</a>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept="image/*" >
-          <label for="profile_picture">Profile Picture</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="file" class="form-control" id="profile_video" name="profile_video" accept="video/*" >
-          <label for="profile_video">Profile Video</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="file" class="form-control" id="songs" name="profile_songs[]" multiple accept=".mp3" onchange="validateFiles(this)" >
-          <label for="songs">Songs(3 max)</label>
-          <script>
-            function validateFiles(input) {
-              const maxFiles = 3
-              var fileCount = input.files ? input.files.length : 0
-              if (fileCount > maxFiles) {
-                alert('You can only select up to three MP3 files.')
-                input.value = '' // Clear selected files
-              }
+<%= render "shared/sidebar" %>
+<div class="text-center overflow-scroll appSection">
+  <div class="col-md-10 mx-auto col-lg-5 appSectionInner">
+    <%= render "shared/flash_messages" %>
+    <form class="p-4 p-md-5 border rounded-3" action="/edit_profile" method="post" enctype="multipart/form-data" >
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="username" name="username" placeholder="michael_reeves21" value="<%= @current_user.username %>" required>
+        <label class="text-dark" for="username">Username</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%= @current_user.email %>" required>
+        <label class="text-dark" for="email">Email address</label>
+      </div>
+      <div class="form-floating mb-3">
+        <% userLocation = Geocoder.search(@current_user.ip_address).first %>
+        <input type="text" class="form-control" id="location" readonly value="<%= userLocation.city %>, <%= userLocation.country %>" required>
+        <label class="text-dark" for="location">Location</label>
+        <a href="/get_location" data-turbo="false" class="btn btn-light">Update Location</a>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept="image/*" >
+        <label class="text-dark" for="profile_picture">Profile Picture</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="file" class="form-control" id="profile_video" name="profile_video" accept="video/*" >
+        <label class="text-dark" for="profile_video">Profile Video</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="file" class="form-control" id="songs" name="profile_songs[]" multiple accept=".mp3" onchange="validateFiles(this)" >
+        <label class="text-dark" for="songs">Songs(3 max)</label>
+        <script>
+          function validateFiles(input) {
+            const maxFiles = 3
+            var fileCount = input.files ? input.files.length : 0
+            if (fileCount > maxFiles) {
+              alert('You can only select up to three MP3 files.')
+              input.value = '' // Clear selected files
             }
-          </script>          
-        </div>         
-        <div class="form-floating mb-3" data-controller="artist-search">
-            <input data-artist-search-target="input" id="artist_1" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">  
-            <label for="artist_1">Artist 1</label>    
-            <select data-artist-search-target="dropdown" name="artist_1">
-                <!-- Options will be populated by Stimulus -->
-                <option value="<%= @current_user.chosen_artists.first.artist_id %>" selected><%=  @current_user.chosen_artists.first.artist_id.present? ? RSpotify::Artist.find(@current_user.chosen_artists.first.artist_id).name : ''  %></option>
-            </select>
-        </div> 
-        <div class="form-floating mb-3" data-controller="artist-search">
-            <input data-artist-search-target="input" id="artist_2" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">
-            <label for="artist_2">Artist 2</label>
-            <select data-artist-search-target="dropdown" name="artist_2">
-                <!-- Options will be populated by Stimulus -->
-                <option value="<%= @current_user.chosen_artists.offset(1).first.artist_id %>" selected><%=  @current_user.chosen_artists.offset(1).first.artist_id.present? ? RSpotify::Artist.find(@current_user.chosen_artists.offset(1).first.artist_id).name : ''  %></option>
-            </select>
-        </div> 
-        <div class="form-floating mb-3" data-controller="artist-search">
-            <input data-artist-search-target="input" id="artist_3" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">
-            <label for="artist_3">Artist 3</label>
-            <select data-artist-search-target="dropdown" name="artist_3">
-                <!-- Options will be populated by Stimulus -->
-                <option value="<%= @current_user.chosen_artists.offset(2).first.artist_id %>" selected><%=  @current_user.chosen_artists.offset(2).first.artist_id.present? ? RSpotify::Artist.find(@current_user.chosen_artists.offset(2).first.artist_id).name : ''  %></option>
-            </select>
-        </div>
-        <div class="form-floating mb-3" data-controller="genre-search">
-            <input data-genre-search-target="input" id="genre_1" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
-            <label for="genre_1">Genre 1</label>    
-            <select data-genre-search-target="dropdown" name="genre_1" >
-                <!-- Options will be populated by Stimulus -->
-                <option value="<%= @current_user.chosen_genres.first.genre_id %>" selected><%= Genre.find_by(id: @current_user.chosen_genres.first.genre_id)&.name %></option>
-            </select>
-        </div> 
-        <div class="form-floating mb-3" data-controller="genre-search">
-            <input data-genre-search-target="input" id="genre_2" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
-            <label for="genre_2">Genre 2</label>    
-            <select data-genre-search-target="dropdown" name="genre_2">
-                <!-- Options will be populated by Stimulus -->
-                <option value="<%= @current_user.chosen_genres.offset(1).first.genre_id %>" selected><%= Genre.find_by(id: @current_user.chosen_genres.offset(1).first.genre_id)&.name %></option>
-            </select>
-        </div> 
-        <div class="form-floating mb-3" data-controller="genre-search">
-            <input data-genre-search-target="input" id="genre_3" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
-            <label for="genre_3">Genre 3</label>    
-            <select data-genre-search-target="dropdown" name="genre_3">
-                <!-- Options will be populated by Stimulus -->
-                <option value="<%= @current_user.chosen_genres.offset(2).first.genre_id %>" selected><%= Genre.find_by(id: @current_user.chosen_genres.offset(2).first.genre_id)&.name %></option>
-            </select>
-        </div> 
-        <div class="form-floating mb-3" data-controller="tag-search">
-            <input data-tag-search-target="input" id="tag_1" class="form-control" data-action="tag-search#loadTags" type="text" placeholder="Search for tags...">  
-            <label for="tag_1">Tag 1</label>    
-            <select data-tag-search-target="dropdown" name="tag_1">
-                <!-- Options will be populated by Stimulus -->
-                <option value="<%= @current_user.chosen_tag.tag_id %>" selected><%= Tag.find_by(id: @current_user.chosen_tag.tag_id)&.name %></option>
-            </select>
-        </div>                
-                             
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Update</button>
-        <hr class="my-4">
-      </form>
-    </div>    
-  
-  </div>
-</main>
+          }
+        </script>          
+      </div>         
+      <div class="form-floating mb-3" data-controller="artist-search">
+          <input data-artist-search-target="input" id="artist_1" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">  
+          <label class="text-dark" for="artist_1">Artist 1</label>    
+          <select data-artist-search-target="dropdown" name="artist_1">
+              <!-- Options will be populated by Stimulus -->
+              <option value="<%= @current_user.chosen_artists.first.artist_id %>" selected><%=  @current_user.chosen_artists.first.artist_id.present? ? RSpotify::Artist.find(@current_user.chosen_artists.first.artist_id).name : ''  %></option>
+          </select>
+      </div> 
+      <div class="form-floating mb-3" data-controller="artist-search">
+          <input data-artist-search-target="input" id="artist_2" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">
+          <label class="text-dark" for="artist_2">Artist 2</label>
+          <select data-artist-search-target="dropdown" name="artist_2">
+              <!-- Options will be populated by Stimulus -->
+              <option value="<%= @current_user.chosen_artists.offset(1).first.artist_id %>" selected><%=  @current_user.chosen_artists.offset(1).first.artist_id.present? ? RSpotify::Artist.find(@current_user.chosen_artists.offset(1).first.artist_id).name : ''  %></option>
+          </select>
+      </div> 
+      <div class="form-floating mb-3" data-controller="artist-search">
+          <input data-artist-search-target="input" id="artist_3" class="form-control" data-action="artist-search#loadArtists" type="text" placeholder="Search for artists...">
+          <label class="text-dark" or="artist_3">Artist 3</label>
+          <select data-artist-search-target="dropdown" name="artist_3">
+              <!-- Options will be populated by Stimulus -->
+              <option value="<%= @current_user.chosen_artists.offset(2).first.artist_id %>" selected><%=  @current_user.chosen_artists.offset(2).first.artist_id.present? ? RSpotify::Artist.find(@current_user.chosen_artists.offset(2).first.artist_id).name : ''  %></option>
+          </select>
+      </div>
+      <div class="form-floating mb-3" data-controller="genre-search">
+          <input data-genre-search-target="input" id="genre_1" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
+          <label class="text-dark" for="genre_1">Genre 1</label>    
+          <select data-genre-search-target="dropdown" name="genre_1" >
+              <!-- Options will be populated by Stimulus -->
+              <option value="<%= @current_user.chosen_genres.first.genre_id %>" selected><%= Genre.find_by(id: @current_user.chosen_genres.first.genre_id)&.name %></option>
+          </select>
+      </div> 
+      <div class="form-floating mb-3" data-controller="genre-search">
+          <input data-genre-search-target="input" id="genre_2" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
+          <label class="text-dark" for="genre_2">Genre 2</label>    
+          <select data-genre-search-target="dropdown" name="genre_2">
+              <!-- Options will be populated by Stimulus -->
+              <option value="<%= @current_user.chosen_genres.offset(1).first.genre_id %>" selected><%= Genre.find_by(id: @current_user.chosen_genres.offset(1).first.genre_id)&.name %></option>
+          </select>
+      </div> 
+      <div class="form-floating mb-3" data-controller="genre-search">
+          <input data-genre-search-target="input" id="genre_3" class="form-control" data-action="genre-search#loadGenres" type="text" placeholder="Search for genres...">  
+          <label class="text-dark" for="genre_3">Genre 3</label>    
+          <select data-genre-search-target="dropdown" name="genre_3">
+              <!-- Options will be populated by Stimulus -->
+              <option value="<%= @current_user.chosen_genres.offset(2).first.genre_id %>" selected><%= Genre.find_by(id: @current_user.chosen_genres.offset(2).first.genre_id)&.name %></option>
+          </select>
+      </div> 
+      <div class="form-floating mb-3" data-controller="tag-search">
+          <input data-tag-search-target="input" id="tag_1" class="form-control" data-action="tag-search#loadTags" type="text" placeholder="Search for tags...">  
+          <label class="text-dark" for="tag_1">Tag 1</label>    
+          <select data-tag-search-target="dropdown" name="tag_1">
+              <!-- Options will be populated by Stimulus -->
+              <option value="<%= @current_user.chosen_tag.tag_id %>" selected><%= Tag.find_by(id: @current_user.chosen_tag.tag_id)&.name %></option>
+          </select>
+      </div>                
+                            
+      <button class="w-100 btn btn-lg btn-light" type="submit">Update</button>
+      <hr class="my-4">
+    </form>
+  </div>    
+</div>
+
