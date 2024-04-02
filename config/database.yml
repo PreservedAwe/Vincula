@@ -84,4 +84,4 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DB_INT_HOST'] %>
+  url: <%= ENV['DB_EXT_HOST'] %>
