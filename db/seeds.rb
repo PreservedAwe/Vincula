@@ -68,7 +68,7 @@ genres = [
  { name: 'Space Rock' },
  { name: 'Stoner Rock' },
  { name: 'Glam Rock' },
- { name: 'Progressive Rock' },  
+ { name: 'Progressive Rock' } 
 ]
 
 Genre.create!(genres)
@@ -153,14 +153,14 @@ user10.profile_picture.attach(io: File.open(Rails.root.join('app', 'assets', 'im
 # Seed settings
 user1Settings = user1.create_setting(max_distance: 36, user: user1, is_enabled: true, genre_id: 1, search_type: 1)   
 user2Settings = user2.create_setting(max_distance: 78, user: user2, is_enabled: false, genre_id: 1, search_type: 2)  
-user3Settings = user3.create_setting(max_distance: 42, user: user3, is_enabled: [true, false].sample, tag_id: 17, search_type: 2)
-user4Settings = user4.create_setting(max_distance: 87, user: user4, is_enabled: [true, false].sample, genre_id: 4, search_type: 1)
-user5Settings = user5.create_setting(max_distance: 15, user: user5, is_enabled: [true, false].sample, tag_id: 12, search_type: 3)
-user6Settings = user6.create_setting(max_distance: 29, user: user6, is_enabled: [true, false].sample, genre_id: 8, search_type: 2)
-user7Settings = user7.create_setting(max_distance: 63, user: user7, is_enabled: [true, false].sample, tag_id: 19, search_type: 1)
-user8Settings = user8.create_setting(max_distance: 50, user: user8, is_enabled: [true, false].sample, genre_id: 3, search_type: 3)
-user9Settings = user9.create_setting(max_distance: 72, user: user9, is_enabled: [true, false].sample, tag_id: 14, search_type: 2)
-user10Settings = user10.create_setting(max_distance: 87, user: user4, is_enabled: [true, false].sample, genre_id: 4, search_type: 1)
+user3Settings = user3.create_setting(max_distance: 42, user: user3, is_enabled: true, tag_id: 17, search_type: 2)
+user4Settings = user4.create_setting(max_distance: 87, user: user4, is_enabled: false, genre_id: 4, search_type: 1)
+user5Settings = user5.create_setting(max_distance: 15, user: user5, is_enabled: true, tag_id: 12, search_type: 3)
+user6Settings = user6.create_setting(max_distance: 29, user: user6, is_enabled: false, genre_id: 8, search_type: 2)
+user7Settings = user7.create_setting(max_distance: 63, user: user7, is_enabled: true, tag_id: 19, search_type: 1)
+user8Settings = user8.create_setting(max_distance: 50, user: user8, is_enabled: false, genre_id: 3, search_type: 3)
+user9Settings = user9.create_setting(max_distance: 72, user: user9, is_enabled: true, tag_id: 14, search_type: 2)
+user10Settings = user10.create_setting(max_distance: 87, user: user10, is_enabled: false, genre_id: 4, search_type: 1)
 
 chosen_artists = [
     { user: user1, order: 1 },
@@ -230,7 +230,7 @@ chosen_artists = [
   ]
   chosen_genres = ChosenGenre.create!(chosen_genres) 
 
-  chosen_tag = [
+  chosen_tags = [
     { user: user1, order: 1 },
     { user: user2, order: 1 },
     { user: user3, order: 1 },
@@ -242,7 +242,7 @@ chosen_artists = [
     { user: user9, order: 1 },
     { user: user10, order: 1 }
   ]
-  chosen_tag = ChosenTag.create!(chosen_tag) 
+  chosen_tag = ChosenTag.create!(chosen_tags) 
 
 
 

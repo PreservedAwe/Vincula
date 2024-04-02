@@ -44,7 +44,7 @@
           <div class="row align-items-center">
             <div class="col">
               <audio controls>
-                <source src="<%=   %>" type="audio/mpeg">
+                <source src="<%= rails_blob_path(song) %>" type="audio/mpeg">
                 Your browser does not support the audio element.
               </audio>
             </div>
@@ -56,7 +56,7 @@
     <% if @current_user.profile_video.present? %>
       <div class="embed-responsive embed-responsive-16by9 w-60">
         <video class="embed-responsive-item" controls>
-          <source src="<%=  %>" type="video/mp4">
+          <source src="<%= rails_blob_path(@current_user.profile_video)  %>" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>   

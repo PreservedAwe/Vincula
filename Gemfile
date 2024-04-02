@@ -90,3 +90,5 @@ group :test do
   gem "selenium-webdriver"
 end
 
+
+gem "activerecord-enhancedsqlite3-adapter", "~> 0.5.0"
