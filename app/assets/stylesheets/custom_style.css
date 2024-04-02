@@ -1,11 +1,11 @@
  .pageBody {
-   background-image: linear-gradient(to top, #0fbdd6, #27a6bb, #3190a1, #347b87, #35666f, #3d656d, #43646a, #496368, #5b757b, #6e898e, #819ca2, #95b0b6);
-   color: black;
+  background-image: linear-gradient(to bottom, #000000, #3e2526, #78483c, #ae734a, #d9a755, #e5bb5a, #eed161, #f5e769, #f1da64, #edce60, #e8c25c, #e2b659);
+   color: white;
    font-family: cursive;
  }
 
  .mainText{
-   color: black;
+   color: white;
    font-family: cursive;
    text-decoration: none;
  }
@@ -37,3 +37,27 @@
    width: 100%;
    z-index: 1000;
  } 
+
+ .sidebar {
+  height: 100%;
+  width: 250px;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+ }
+
+ .appSection {
+  width: calc(100% - 250px);
+  background-image: linear-gradient(to right, #000000, #3e2526, #78483c, #ae734a, #d9a755, #e5bb5a, #eed161, #f5e769, #f1da64, #edce60, #e8c25c, #e2b659);
+  height: 100%;
+  padding: 20px;
+  position: fixed; /* Positioned to the right of the sidebar */
+  top: 0;
+  left: 250px; 
+ }
+
+ .appSectionInner {
+  background-color: black;
+  color: white;
+ }

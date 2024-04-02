@@ -1,10 +1,8 @@
-<main class=" d-flex flex-nowrap vh-100 vw-100">
-  <%= render "shared/sidebar" %>
-  <div class="border border-dashed text-center overflow-scroll h-100 w-100">
-    <%= render "shared/profileview" %> 
-    <a class="btn btn-outline-primary" data-turbo="false" href="/direct_messages?user=<%= @current_user.username %>" role="button">Send Message</a>
-    <a class="btn btn-outline-primary" href="/find" role="button">Go Back</a>    
-  </div>
-</main>
+<%= render "shared/sidebar" %>
+<div class="border border-dashed text-center overflow-scroll appSection">
+  <%= render "shared/profileview" %> 
+  <a class="btn btn-outline-primary" data-turbo="false" href="/direct_messages?user=<%= @current_user.username %>" role="button">Send Message</a>
+  <a class="btn btn-outline-primary" href="/find" role="button">Go Back</a>    
+</div>
 
 
