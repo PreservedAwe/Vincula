@@ -92,3 +92,7 @@ end
 
 
 gem "activerecord-enhancedsqlite3-adapter", "~> 0.5.0"
+
+gem "dockerfile-rails", "~> 1.6"
+
+gem "redis", "~> 5.1"
