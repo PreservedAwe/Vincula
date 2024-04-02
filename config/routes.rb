@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post '/send_message' , to: 'messages#send_message'
 
   #Get routes
+  get '/code' , to: 'home#qr_code'
   get '/messages' , to: 'messages#index'
   get '/direct_messages' , to: 'messages#direct'
   get '/connect' , to: 'connect#index'

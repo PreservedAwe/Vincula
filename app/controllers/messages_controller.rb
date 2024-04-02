@@ -4,10 +4,10 @@ class MessagesController < ApplicationController
   def index
     current_user = User.find(session[:user_id])
     @rooms = Room.total(current_user.id)
-    if @rooms.first != []
-      render "mainpage/messages/index"
+    if @rooms == nil
+      render "mainpage/messages/empty"
     else
-      render "mainpage/messages/empty"      
+      render "mainpage/messages/index"      
     end
   end
 
@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
       @room.save  
       render "mainpage/messages/direct_message"
     else
-      render "mainpage/messages/direct_message_nil"
+      redirect_to "/messages"
     end
 
     

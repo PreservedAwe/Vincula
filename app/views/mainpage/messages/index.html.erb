@@ -1,9 +1,9 @@
 <%= render "shared/sidebar" %>
-<div class="text-center text-muted appSection overflow-scroll">
+<div class="text-center text-muted border rounded-3 appSection overflow-scroll">
   <div class="list-group appSectionInner" data-controller="maintain-rooms" data-maintain-rooms-user-username="<%= User.find(session[:user_id]).username %>">
     <% @rooms.each do |room| %>
-      <% room.recipient_id == session[:user_id] %> 
-        <% if user = User.find_by(id: room.sender_id) %>   
+      <% if room.recipient_id == session[:user_id] %> 
+        <% user = User.find_by(id: room.sender_id) %>   
       <% else %> 
         <% user = User.find_by(id: room.recipient_id) %>
       <% end %>     

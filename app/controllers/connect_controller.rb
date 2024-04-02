@@ -4,11 +4,18 @@ class ConnectController < ApplicationController
   def index
     current_user = User.find(session[:user_id])
     @searched_users = create_preferences(current_user)
-    render "mainpage/connect/index"
+    if @searched_users.first == nil 
+      render "mainpage/connect/empty"      
+    else
+      render "mainpage/connect/index"
+    end
   end
 
   def view_profile
     @current_user = User.find_by(username: params[:username])
+    if @current_user == nil 
+      redirect_to "/connect"
+    end
     render "mainpage/connect/view_profile"
   end
 
