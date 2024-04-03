@@ -1,12 +1,12 @@
  .pageBody {
   background-image: linear-gradient(to bottom, #000000, #3e2526, #78483c, #ae734a, #d9a755, #e5bb5a, #eed161, #f5e769, #f1da64, #edce60, #e8c25c, #e2b659);
    color: white;
-   font-family: cursive;
+   font-family: Helvetica, Arial, sans-serif;
  }
 
  .mainText{
    color: white;
-   font-family: cursive;
+   font-family: Helvetica, Arial, sans-serif;
    text-decoration: none;
  }
 
@@ -72,3 +72,5 @@
  .navbarLinksb:hover {
   color: #000000;
  } 
+
+ 
