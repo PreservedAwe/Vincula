@@ -9,7 +9,7 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 gem "sprockets-rails"
 
 # Use pg as the database for Active Record
-gem 'pg', '~> 1.5', '>= 1.5.6'
+gem 'sqlite3'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -91,7 +91,7 @@ group :test do
 end
 
 
-gem "activerecord-enhancedsqlite3-adapter", "~> 0.5.0"
+gem "activerecord-enhancedsqlite3-adapter"
 
 gem "dockerfile-rails", "~> 1.6"
 
