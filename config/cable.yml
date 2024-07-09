@@ -6,4 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL", "redis://red-co67dpf109ks73dpp3c0:6379") %>
+  url: <%= ENV.fetch("REDIS_URL", "") %>

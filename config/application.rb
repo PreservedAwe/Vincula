@@ -17,7 +17,7 @@ module Vincula
     config.autoload_lib(ignore: %w(assets tasks))
 
     # Configuration for the application, engines, and railties goes here.
-    RSpotify::authenticate(ENV.fetch("SPOTIFY_ID", "00b63afad81e42e2a59a1fe76789e0df"), ENV.fetch("SPOTIFY_SECRET", "cf0f8fe1e8a64ed09532f5c94624388f"))
+    RSpotify::authenticate(ENV.fetch("SPOTIFY_ID", ""), ENV.fetch("SPOTIFY_SECRET", ""))
 
     # Middle for cross origin request, in my case for spotify
     config.middleware.insert_before 0, Rack::Cors do
