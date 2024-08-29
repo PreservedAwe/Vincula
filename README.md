@@ -6,7 +6,7 @@ This is a web application that aims at being the middle man that connects other 
 
 1. Clone git repo onto your system.
 
-2. Download ruby on your system. Here is a link on how to do so from Ruby's official [website] (https://www.ruby-lang.org/en/documentation/installation/).
+2. Download ruby on your system. Here is a link on how to do so from Ruby's official [website](https://www.ruby-lang.org/en/documentation/installation/).
 
 3. Cd into project folder then open the terminal.
 
