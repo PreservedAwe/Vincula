@@ -14,8 +14,8 @@ COPY . .
 RUN bundle install
 RUN yarn install
 
-RUN RAILS_ENV=production rake assets:precompile
+RUN rake assets:precompile
 
 
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]
