@@ -14,6 +14,8 @@ COPY . .
 RUN bundle install
 RUN yarn install
 
+ENV RAILS_ENV=production
+
 RUN rake assets:precompile
 RUN rake db:migrate 
 RUN rake db:seed
