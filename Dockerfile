@@ -15,6 +15,7 @@ RUN bundle install
 RUN yarn install
 
 RUN rake assets:precompile
-RUN rake db:migrate && rake db:seed
+RUN rake db:migrate 
+RUN rake db:seed
 
 CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]
