@@ -29,8 +29,7 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-# Spotify api for calls to their database
-gem "rspotify"
+
 
 # Dealing with CORS for api's
 gem 'rack-cors'
@@ -96,3 +95,6 @@ gem "activerecord-enhancedsqlite3-adapter"
 gem "dockerfile-rails", "~> 1.6"
 
 gem "redis", "~> 5.1"
+
+# Spotify api for calls to their database
+gem "rspotify", "~> 2.12"
