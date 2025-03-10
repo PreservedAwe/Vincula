@@ -1,5 +1,5 @@
 <div class="card text-center border rounded-3 appSectionInner">
-  <img src="<%= rails_blob_path(@current_user.profile_picture) %>" class="card-img-top h-10 w-60" alt="Profile Picture(Browser doesn't support picture)">
+  <img src="<%= @current_user.profile_picture.attached? ? rails_blob_path(@current_user.profile_picture) : asset_path('default-user.png') %>" class="card-img-top h-10 w-60" alt="Profile Picture(Browser doesn't support picture)">
   <div class="card-body ">
     <h5 class="card-title"><%= @current_user.username %></h5>
     <h3 class="card-title"><%= Tag.find_by(id: @current_user.chosen_tag.tag_id)&.name %></h3>

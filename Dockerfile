@@ -1,23 +1,34 @@
-FROM ruby:3.2.3
+FROM ruby:3.2.3-slim
 
 RUN apt-get update && \
-    apt-get install -y sqlite3 libsqlite3-dev curl && \
+    apt-get install -y --no-install-recommends \
+        sqlite3 \
+        libsqlite3-dev \
+        curl \
+        build-essential && \
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs=20.11.1-1nodesource1 && \
-    npm install -g yarn@1.22.21 && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y nodejs && \
+    npm install -g yarn && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /app
 
 COPY . .
 
-RUN bundle install
-RUN yarn install
+RUN bundle install && \
+    yarn install --production
 
 ENV RAILS_ENV=production
 
-RUN rake assets:precompile
-RUN rake db:migrate 
-RUN rake db:seed
+RUN rake assets:precompile 
 
-CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]
+RUN groupadd -r tempGroup
+
+RUN useradd -r -g tempGroup -m tempUser
+
+RUN chown -R tempUser:tempGroup /app
+
+USER tempUser
+
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "4000"]

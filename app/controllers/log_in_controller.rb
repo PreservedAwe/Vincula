@@ -1,7 +1,7 @@
 class LogInController < ApplicationController
 
   def index
-    if session[:user_id]
+    if session[:user_id] && User.exists?(session[:user_id])
       redirect_to "/menu"
     else  
       render "homepage/log_in/index"
@@ -11,10 +11,10 @@ class LogInController < ApplicationController
 
   def is_user
     user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
+    if user&.authenticate(params[:password])
       session[:user_id] = user.id
       cookies.encrypted[:user_id] = session[:user_id] 
-      session[:login_email] = nil
+      session.delete(:login_email)
       redirect_to "/menu"  
     else
       session[:login_email] = params[:email]

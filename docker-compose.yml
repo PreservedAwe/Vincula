@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
-  web:
+  vincula:
     build: .
     ports:
-      - "3000:3000"
+      - "4000:4000"
+    user: tempUser  
     volumes:
-      - .:/app
       - sqlite_data:/app/db
 
 volumes:

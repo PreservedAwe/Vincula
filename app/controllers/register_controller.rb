@@ -1,6 +1,6 @@
 class RegisterController < ApplicationController
   def index
-    if session[:user_id]
+    if session[:user_id] && User.exists?(session[:user_id])
       redirect_to "/menu"
     else  
       render "homepage/register/index"

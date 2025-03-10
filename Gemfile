@@ -8,7 +8,7 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use pg as the database for Active Record
+# Use sqlite as the database for Active Record
 gem 'sqlite3'
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -90,7 +90,7 @@ group :test do
 end
 
 
-gem "activerecord-enhancedsqlite3-adapter"
+#gem "activerecord-enhancedsqlite3-adapter"
 
 gem "dockerfile-rails", "~> 1.6"
 
