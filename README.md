@@ -13,7 +13,7 @@ Click this image to view a preview of this software on `youtube` or view the liv
 
 ## Features
 
-![](https://i.imgur.com/kQxl1eL.gif)
+![](https://i.imgur.com/ITtT7pL.gif)
 
 - Message Users
 - Find and Connect with Users
