@@ -4,8 +4,14 @@ services:
     ports:
       - "4000:4000"
     user: tempUser  
+    networks:
+      - shared-network     
     volumes:
       - sqlite_data:/app/db
 
 volumes:
   sqlite_data:
+
+networks:
+  shared-network:
+    external: true    
