@@ -12,15 +12,15 @@ pipeline {
         stage('Shut Down') {
             steps {
                 // 'docker-compose down' stops and removes all containers and networks
-                sh 'docker-compose down'
+                sh 'docker compose down'
             }
         }
-                
+
         stage('Build') {
             steps {
                 // The 'sh' step executes a shell command on the agent.
                 // This command tells docker-compose to build the images defined in your docker-compose.yml file.
-                sh 'docker-compose build'
+                sh 'docker compose build'
             }
         }
 
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 // This command starts the containers in detached mode (-d).
                 // It will recreate any containers whose images were just built.
-                sh 'docker-compose up -d'
+                sh 'docker compose up -d'
             }
         }
     }
