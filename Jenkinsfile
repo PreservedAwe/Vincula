@@ -9,18 +9,18 @@ pipeline {
 
     // A stage is a logical division of the pipeline, like Build, Test, or Deploy.
     stages {
-        stage('Shut Down') {
-            steps {
-                // 'docker-compose down' stops and removes all containers and networks
-                sh 'docker compose down'
-            }
-        }
-
         stage('Build') {
             steps {
                 // The 'sh' step executes a shell command on the agent.
                 // This command tells docker-compose to build the images defined in your docker-compose.yml file.
                 sh 'docker compose build'
+            }
+        }
+
+        stage('Shut Down') {
+            steps {
+                // 'docker-compose down' stops and removes all containers and networks
+                sh 'docker compose down'
             }
         }
 
