@@ -1,8 +1,6 @@
 services:
   vincula:
     build: .
-    ports:
-      - "4000:4000"
     user: tempUser  
     networks:
       - shared-network     
