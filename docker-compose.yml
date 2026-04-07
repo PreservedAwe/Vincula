@@ -1,5 +1,6 @@
 services:
   vincula:
+    container_name: vincula
     build: .
     user: tempUser  
     networks:
