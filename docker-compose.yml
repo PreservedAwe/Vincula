@@ -1,15 +1,19 @@
+name: web-vincula-prod-alpha-full
 services:
   vincula:
-    container_name: vincula
+    container_name: web-vincula-prod-alpha
     build: .
     user: tempUser  
     networks:
-      - shared-network     
+      shared-network:                   
+        aliases:
+          - web.vincula.prod.alpha   
     volumes:
       - sqlite_data:/app/db
 
 volumes:
   sqlite_data:
+    name: web-vincula-prod-alpha_sqlite_data  
 
 networks:
   shared-network:
